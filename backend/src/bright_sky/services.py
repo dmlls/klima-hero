@@ -11,6 +11,12 @@ def read_cells():
         data = json.load(f)
     return data
 
+def warning_cells():
+    current_dir =  Path(__file__).parent.resolve()
+    with open(current_dir / "../data/sources/south_munich_cells.json", "r") as f:
+        data = json.load(f)
+    return data
+
 
 def generate_alert():
     start = datetime.datetime.now() + datetime.timedelta(days=randrange(start = -2, stop = 1),
@@ -40,8 +46,8 @@ def generate_alert():
 
 def generate_oktoberfest():
     alert = {
-        'effective': datetime.now(),
-        'expires': datetime.now() + datetime.timedelta(days=16),
+        'effective': datetime.datetime.now(),
+        'expires': datetime.datetime.now() + datetime.timedelta(days=16),
         'category': 'Beer',
         'severity': 'extreme',
         'description': 'This is official warning of drunk sightings all over the city'
