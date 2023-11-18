@@ -23,7 +23,7 @@ api_v1 = FastAPI(
 
 # CORS
 origins = [
-    "http://localhost",
+    "*",
 ]
 
 # Include middleware
