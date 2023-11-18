@@ -19,6 +19,7 @@ class Poi {
     this.official = data.official;
     this.active = data.active;
     this.id = data.id;
+    this.iconUrl = data.iconUrl;
   }
 }
 
@@ -39,13 +40,12 @@ class Thread {
 }
 
 const Munichmap = () => {
-
   const mapContainer = useRef(null);
   const map = useRef(null);
   const [lng] = useState(11.576124);
   const [lat] = useState(48.137154);
   const [zoom] = useState(10);
-  const [API_KEY] = useState('d8Ep6nL1m5luLcZ2oC3u');
+  const [API_KEY] = useState('N5ziFaB0ErlP8IQFCFOt');
   const [poiData, setPoiData] = useState(null);
   const [cellsData, setCellsData] = useState(null);
   const [mapInitialized, setMapInitialized] = useState(false);
@@ -68,11 +68,11 @@ const Munichmap = () => {
 
     poiData.forEach(poi => {
       map.current.loadImage(
-          `https://cdn-icons-png.flaticon.com/512/1964/1964391.png`,
+          poi.iconUrl,
           (error, image) => {
             if (error) throw error;
-            if (!map.current.hasImage(poi.poiType)) {
-              map.current.addImage(poi.poiType, image);
+            if (!map.current.hasImage(poi.id)) {
+              map.current.addImage(poi.id, image);
             }
           }
       );
@@ -96,10 +96,19 @@ const Munichmap = () => {
 
     if (poiFeatures.length > 0) {
       // Clicked on a POI marker
-      const clickedPoi = poiFeatures[0].properties;
-      setSelectedPoi(clickedPoi);
+      const clickedPoiId = poiFeatures[0].properties['icon-image'];
+      const clickedPoi = poiData.find((poi) => poi.id === clickedPoiId);
 
-      // You can handle the POI marker click here, maybe open a modal or do something else
+      if (clickedPoi) {
+        // Set the selected POI
+        setSelectedPoi(clickedPoi);
+
+        // Optionally, set the clicked location state
+        setClickedLocation({
+          latitude: clickedPoi.latitude,
+          longitude: clickedPoi.longitude,
+        });
+      }
     } else {
       // Clicked on the map
       setSelectedPoi(null); // Reset selectedPoi when clicking on the map
@@ -109,7 +118,6 @@ const Munichmap = () => {
       });
     }
   };
-
 
   useEffect(() => {
     // Initialize the map
@@ -132,11 +140,9 @@ const Munichmap = () => {
   useEffect(() => {
     // Initialize the map
     if (mapInitialized) {
-      console.log("Hello")
       map.current.on('click', handleMapClick);
     }
     return () => {
-      console.log("Bye")
       // Remove the click event listener when the component unmounts
       map.current.off('click', handleMapClick);
     };
@@ -168,10 +174,6 @@ const Munichmap = () => {
       setClickedLocation(null);
     }
   }, [clickedLocation, marker]);
-
-
-
-
 
 
   useEffect(() => {
@@ -210,7 +212,7 @@ const Munichmap = () => {
 
           const result = await response.json();
           const convertedData = result.map(item => new Cell(item));
-          console.log(convertedData)
+
           setCellsData(convertedData);
         } catch (error) {
           console.error('Error fetching data:', error);
@@ -234,15 +236,14 @@ const Munichmap = () => {
         type: 'geojson',
         data: {
           type: 'FeatureCollection',
-          features: poiData.map(poi => ({
+          features: poiData.map((poi) => ({
             type: 'Feature',
             geometry: {
               type: 'Point',
               coordinates: [poi.longitude, poi.latitude],
             },
             properties: {
-              //iconSize: [0.1, 0.1], // Adjust as needed
-              iconImage: poi.poiType, // Assuming icons are in the 'assets' folder
+              'icon-image': poi.id,
             },
           })),
         },
@@ -253,7 +254,7 @@ const Munichmap = () => {
         type: 'symbol',
         source: 'points',
         layout: {
-          'icon-image': '{iconImage}',
+          'icon-image': ['get', 'icon-image'],
           'icon-size': 0.1,
           'icon-allow-overlap': true,
         },
