@@ -35,7 +35,7 @@ const Navbar = () => {
             <div style={{ display: "flex", flexDirection: "column", minHeight: "100vh" }}>
                 {/* Content Container */}
                 <div style={{ flex: 1 }}>
-                    <Card style={{ backgroundColor: "red", minHeight: "100%" }}>
+                    <Card style={{ minHeight: "100%" }}>
                         <Grid
                             container
                             direction="column"
