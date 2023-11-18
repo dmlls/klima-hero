@@ -58,15 +58,18 @@ const Navbar = () => {
                     </Card>
                 </div>
                 {/* Bottom Navbar */}
-                <BottomNavigation showLabels value={"Johannes"} style={{height: "7vh"}}>
+                <BottomNavigation showLabels value={"Johannes"} style={{height: "7vh", justifyContent:"space-between", paddingRight:"10px", paddingLeft:"10px"}}>
                         <Link to="/">
-                            <BottomNavigationAction icon={<HomeIcon style={{fontSize:"35px"}}/>} />
+                            <BottomNavigationAction icon={<HomeIcon style={{fontSize:"35px"}} />} />
+                            <Typography variant="body2" color={"black"}>Home</Typography>
                         </Link>
                         <Link to="/munichMap">
                             <BottomNavigationAction icon={<MapIcon style={{fontSize:"35px"}}/>} />
+                            <Typography variant="body2" color={"black"}>Map</Typography>
                         </Link>
                         <Link to="/profile">
                         <BottomNavigationAction icon={<AccountCircleIcon style={{fontSize:"35px"}}/>} />
+                        <Typography variant="body2" color={"black"}>Profile</Typography>
                         </Link>
                 </BottomNavigation>
             </div>
