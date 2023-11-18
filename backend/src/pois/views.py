@@ -1,7 +1,7 @@
 from datetime import datetime
 from typing import List
 
-from fastapi import APIRouter, Depends, status
+from fastapi import APIRouter, Depends, Response, status
 from sqlalchemy.orm import Session
 
 from .models import Poi, PoiRequest, GetClosestPoisRequest
@@ -23,9 +23,12 @@ def create_poi_view(
 def update_poi_view(
     poi_id: str,
     request: PoiRequest,
+    response: Response,
     db: Session = Depends(database.get_db)
 ):
-    update_poi(db, poi_id, request)
+    updated = update_poi(db, poi_id, request)
+    if not updated:
+        response.status_code = status.HTTP_404_NOT_FOUND
 
 
 @router.get("/all", response_model=List[Poi])

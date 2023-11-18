@@ -49,6 +49,7 @@ class PoiRequest(CamelModel):
 class Poi(PoiRequest):
 
     id: str
+    icon_url: str
 
     @field_validator("id", mode="before")
     @classmethod

@@ -21,6 +21,7 @@ class FixedPoiRequest(CamelModel):
 class FixedPoi(FixedPoiRequest):
 
     id: str
+    icon_url: str
 
     @field_validator("id", mode="before")
     @classmethod

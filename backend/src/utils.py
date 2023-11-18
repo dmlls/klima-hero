@@ -8,15 +8,16 @@ db = next(database.get_db())
 def populate_db():
     db_drinking_water = [
         schemas.FixedPoiCreate(
-            latitude=dw[0],
-            longitude=dw[1],
-            poi_type=FixedPoiType.FOUNTAIN.value
+            latitude=dw["lat"],
+            longitude=dw["lon"],
+            poi_type=FixedPoiType.FOUNTAIN.value,
+            icon_url=dw["icon_url"]
         )
         for dw in parse_drinking_water()
     ]
     crud.create_fixed_pois(db, db_drinking_water)
     user_pois = [
-        schemas.PoiCreate(**up.dict())
+        schemas.PoiCreate(**up)
         for up in parse_user_pois()
     ]
     crud.create_pois(db, user_pois)

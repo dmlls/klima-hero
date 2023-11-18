@@ -4,9 +4,9 @@ from src.fixed_pois.models import FixedPoiRequest
 
 class PoiCreate(PoiRequest):
 
-    pass
+    icon_url: str
 
 
 class FixedPoiCreate(FixedPoiRequest):
 
-    pass
+    icon_url: str
