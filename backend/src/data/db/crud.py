@@ -1,3 +1,5 @@
+from typing import List
+
 from sqlalchemy.orm import Session
 
 from . import models, schemas
@@ -49,3 +51,18 @@ def get_poi(db: Session, id_: int):
 
 def get_all_pois(db: Session, skip: int = 0, limit: int = 9999):
     return db.query(models.Poi).offset(skip).limit(limit).all()
+
+
+def create_fixed_poi_bulk(db: Session, fixed_pois: List[schemas.FixedPoiCreate]):
+    for poi in fixed_pois:
+        db_poi = models.FixedPoi(
+            latitude=poi.latitude,
+            longitude=poi.longitude,
+            poi_type=poi.poi_type.value,
+        )
+        db.add(db_poi)
+    db.commit()
+
+
+def get_all_fixed_pois(db: Session, skip: int = 0, limit: int = 9999):
+    return db.query(models.FixedPoi).offset(skip).limit(limit).all()
