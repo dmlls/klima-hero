@@ -4,6 +4,17 @@ from sqlalchemy.orm import relationship
 
 from .database import Base
 from src.pois.models import PoiType
+from src.fixed_pois.models import FixedPoiType
+
+
+class FixedPoi(Base):
+    __tablename__ = "fixed_pois"
+
+    id = Column(Integer, primary_key=True, index=True)
+    latitude = Column(Float, index=True)
+    longitude = Column(Float, index=True)
+    poi_type = Column(String, CheckConstraint(
+        f"poi_type IN ({','.join(repr(poi_type.value) for poi_type in FixedPoiType)})"))
 
 
 class Poi(Base):
