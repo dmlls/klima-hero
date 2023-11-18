@@ -4,9 +4,11 @@ import logging
 from fastapi import FastAPI
 from fastapi.middleware.cors import CORSMiddleware
 from src.api import api_router_root, api_router_v1
-
+from src.data.db import models, database
 
 logger = logging.getLogger(__name__)
+
+models.Base.metadata.create_all(bind=database.engine)
 
 app = FastAPI()
 api_root = FastAPI(title="Probably Something Awesome")

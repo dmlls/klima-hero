@@ -1,47 +1,41 @@
 from datetime import datetime
-from fastapi import APIRouter, Depends, status
-from .models import Poi, PoiType, PutPoiRequest, GetClosestPoisRequest
-from.services import get_closest_pois
 from typing import List
+
+from fastapi import APIRouter, Depends, status
+from sqlalchemy.orm import Session
+
+from .models import Poi, PoiRequest, GetClosestPoisRequest
+from .services import create_poi, update_poi, get_all_pois, get_closest_pois
+from src.data.db import database
 
 router = APIRouter()
 
 
 @router.put("", status_code=status.HTTP_201_CREATED)
-def put_poi_view(request: PutPoiRequest):
-    pass
+def create_poi_view(
+    request: PoiRequest,
+    db: Session = Depends(database.get_db)
+):
+    create_poi(db, request)
 
 
-@router.get("", response_model=List[Poi])
-def get_all_pois_view():
-    return [
-        Poi(
-            id="0",
-            latitude=48.2627204,
-            longitude=11.6685920,
-            poi_type=PoiType.FLOOD,
-            thread=[],
-            upvotes=0,
-            creation_date=datetime(2023, 11, 18),
-            related_event="",
-            official=True,
-            active=True,
-        ),
-        Poi(
-            id="1",
-            latitude=48.1611227,
-            longitude=11.5897455,
-            poi_type=PoiType.FLOOD,
-            thread=[],
-            upvotes=0,
-            creation_date=datetime(2023, 11, 18),
-            related_event="",
-            official=True,
-            active=True,
-        )
-    ]
+@router.put("/{poi_id}")
+def update_poi_view(
+    poi_id: str,
+    request: PoiRequest,
+    db: Session = Depends(database.get_db)
+):
+    update_poi(db, poi_id, request)
 
 
-@router.get("closest-pois",  response_model=List[Poi])
-def get_closest_pois_view(request: GetClosestPoisRequest):
-    return get_closest_pois(request.long, request.lat, request.top_k)
+@router.get("/all", response_model=List[Poi])
+def get_all_pois_view(db: Session = Depends(database.get_db)):
+    return get_all_pois(db)
+
+
+@router.get("/closest", response_model=List[Poi])
+def get_closest_pois_view(
+    request: GetClosestPoisRequest,
+    db: Session = Depends(database.get_db)
+):
+    return get_closest_pois(db, request.long, request.lat, request.top_k)
