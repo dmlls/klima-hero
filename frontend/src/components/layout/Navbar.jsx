@@ -22,9 +22,6 @@ import {
     BottomNavigation,
     BottomNavigationAction,
 } from "@mui/material";
-import userPic from "../../assets/PeterProfilePic.png";
-import munichMap from "../../assets/MunichMap.png";
-import homePage from "../../assets/HomePageIcon.png";
 import { Outlet, Link, BrowserRouter, Route, Routes } from "react-router-dom";
 import { Card } from "@mui/material";
 import Homepage from "../../pages/Homepage";
@@ -38,7 +35,7 @@ const Navbar = () => {
         <BrowserRouter>
             <div style={{ display: "flex", flexDirection: "column", height: "100vh"}}>
                 {/* Content Container */}
-                <div style={{ flex: 1, height: "93vh", backgroundColor: "green"}}>
+                <div style={{ flex: 1, backgroundColor: "green"}}>
                     <Card style={{height: "100%" }}>
                         <Grid
                             container
@@ -58,7 +55,7 @@ const Navbar = () => {
                     </Card>
                 </div>
                 {/* Bottom Navbar */}
-                <BottomNavigation showLabels value={"Johannes"} style={{height: "7vh", justifyContent:"space-between", paddingRight:"10px", paddingLeft:"10px"}}>
+                <BottomNavigation showLabels value={"Johannes"} style={{justifyContent:"space-between", paddingRight:"10px", paddingLeft:"10px"}}>
                         <Link to="/">
                             <BottomNavigationAction icon={<HomeIcon style={{fontSize:"35px"}} />} />
                             <Typography variant="body2" color={"black"}>Home</Typography>

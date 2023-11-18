@@ -2,9 +2,10 @@ import React, { useRef, useEffect, useState } from 'react';
 import maplibregl from 'maplibre-gl';
 import 'maplibre-gl/dist/maplibre-gl.css';
 import SearchBar from "../components/searchbar/SearchBar";
-import { Modal, Button, Box, Fab} from '@mui/material';
+import { Modal, Fab} from '@mui/material';
 import CrisisAlertIcon from '@mui/icons-material/CrisisAlert';
 import ModalContent from '../components/modalContent/modalContent';
+import PoiModal from "../components/poiMarker/poiModal";
 
 class Poi {
   constructor(data) {
@@ -51,6 +52,7 @@ const Munichmap = () => {
   const [openModal, setOpenModal] = useState(false);
   const [clickedLocation, setClickedLocation] = useState(null);
   const [marker, setMarker] = useState(null);
+  const [selectedPoi, setSelectedPoi] = useState(null);
 
   const handleOpenModal = () => {
     setOpenModal(true);
@@ -79,10 +81,33 @@ const Munichmap = () => {
 
   const handleMapClick = (e) => {
     const { lngLat } = e;
-    setClickedLocation({
-      latitude: lngLat.lat,
-      longitude: lngLat.lng,
-    });
+
+    // Define a buffer size based on your marker size
+    const buffer = 10; // Adjust this value according to your marker size
+
+    // Create a bounding box around the clicked point
+    const bbox = [
+      [e.point.x - buffer, e.point.y - buffer],
+      [e.point.x + buffer, e.point.y + buffer],
+    ];
+
+    // Check if the click was on a POI marker
+    const poiFeatures = map.current.queryRenderedFeatures(bbox, { layers: ['points'] });
+
+    if (poiFeatures.length > 0) {
+      // Clicked on a POI marker
+      const clickedPoi = poiFeatures[0].properties;
+      setSelectedPoi(clickedPoi);
+
+      // You can handle the POI marker click here, maybe open a modal or do something else
+    } else {
+      // Clicked on the map
+      setSelectedPoi(null); // Reset selectedPoi when clicking on the map
+      setClickedLocation({
+        latitude: lngLat.lat,
+        longitude: lngLat.lng,
+      });
+    }
   };
 
 
@@ -119,9 +144,6 @@ const Munichmap = () => {
 
 
   useEffect(() => {
-    // ... (your existing code)
-
-    // Check if a location has been clicked
     if (clickedLocation) {
       // Remove the previous marker
       if (marker) {
@@ -304,10 +326,10 @@ const Munichmap = () => {
           <Modal open={openModal} onClose={handleCloseModal}>
             <ModalContent handleClose={handleCloseModal} />
           </Modal>
+          <PoiModal poiData={selectedPoi} handleClose={() => setSelectedPoi(null)} />
         </div>
       </div>
   );
 };
 
 export default Munichmap;
-
