@@ -39,17 +39,11 @@ class Thread {
 
 const Munichmap = () => {
 
-  const initialViewport = {
-    latitude: 48.8566, // Munich's latitude
-    longitude: 2.3522, // Munich's longitude
-    zoom: 10,
-  };
-
   const mapContainer = useRef(null);
   const map = useRef(null);
   const [lng] = useState(11.576124);
   const [lat] = useState(48.137154);
-  const [zoom] = useState(14);
+  const [zoom] = useState(10);
   const [API_KEY] = useState('d8Ep6nL1m5luLcZ2oC3u');
   const [poiData, setPoiData] = useState(null);
   const [cellsData, setCellsData] = useState(null);

@@ -1,6 +1,5 @@
 import { Avatar, Box, Card, CardActionArea, CardActions, CardContent, CardHeader, CardMedia, Grid, IconButton, Typography } from '@mui/material'
 import React from 'react'
-import { BiBot, BiUser } from "react-icons/bi";
 
 import EarthBot from '../../assets/earthBot2.png';
 
