@@ -1,27 +1,33 @@
-import { Avatar, Box, Card, CardContent, Grid, Typography } from '@mui/material'
+import { Avatar, Box, Card, CardActionArea, CardActions, CardContent, CardHeader, CardMedia, Grid, IconButton, Typography } from '@mui/material'
 import React from 'react'
 import { BiBot, BiUser } from "react-icons/bi";
-import "./chat.css";
+
+import EarthBot from '../../assets/earthBot2.png';
+
 
 const ChatAgent = () => {
   return (
-    <Card style={{backgroundColor: "#ebddff"}} sx={{ minWidth: 275 }}>
-      
-    <Typography color={"#3d2644"} variant='h3' align='justify'><b>Hi There!</b></Typography>
-    <Grid container></Grid>
-    <Grid item xs={1}><Avatar><BiBot></BiBot></Avatar></Grid>
-    <Grid item x={10}>
-    <Box sx={{ borderRadius: '16px' }}>
-        <Card style={{backgroundColor: "#fffff"}} sx={{ width: 200 }}>
-        <CardContent>
-            dusafhlageiurwa
-        </CardContent>
-        </Card></Box>
+            <Card style={{backgroundColor: "#ebddff"}} sx={{ minWidth: 275 }}>
+                <CardContent>
+                <Grid container direction={'row'}>
+            <Grid item xs={10}>
+        
+        <Typography align='justify' color={"#8b72af"} variant='body1'>No extreme weather conditions reported nearby or expected on your way to work. Your commute should proceed smoothly without any weather-related disruptions.</Typography>
         </Grid>
-    <Typography color={"#3d2644"} variant='h5'> headers and info</Typography>
-    <Typography color={"#8b72af"} variant='body2'>Subheaders</Typography>
+        <Grid item xs={2}></Grid>
+        </Grid>
+            
+        </CardContent>
+        <CardActions disableSpacing style={{justifyContent: "flex-end"}}>
+                <IconButton>
 
-    </Card>
+                <Avatar style={{width:"50px",height:"50px"}} src={EarthBot} />
+                </IconButton>
+        </CardActions>
+        
+    
+            </Card>
+    
   )
 }
 
