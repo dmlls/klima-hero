@@ -1,3 +1,4 @@
+import React from "react";
 import {
     AppBar,
     Button,
@@ -19,58 +20,53 @@ import {
     NotificationsIcon,
     BottomNavigation,
     BottomNavigationAction,
-    RestoreIcon,
-  } from "@mui/material";
-  
-  import userPic from '../../assets/PeterProfilePic.png';
-  import munichMap from '../../assets/MunichMap.png';
-  import homePage from '../../assets/HomePageIcon.png';
-  import React, { useState, useContext } from "react";
-  import Homepage from "../../pages/Homepage";
-  import Munichmap from "../../pages/Munichmap";
-  import { Outlet, Link, BrowserRouter, Route, Routes } from "react-router-dom";
-  import {Card} from '@mui/material';
-  
-  const Navbar = () => {
+} from "@mui/material";
+import userPic from "../../assets/PeterProfilePic.png";
+import munichMap from "../../assets/MunichMap.png";
+import homePage from "../../assets/HomePageIcon.png";
+import { Outlet, Link, BrowserRouter, Route, Routes } from "react-router-dom";
+import { Card } from "@mui/material";
+import Homepage from "../../pages/Homepage";
+import Munichmap from "../../pages/Munichmap";
+
+const Navbar = () => {
     return (
         <BrowserRouter>
-<Card>
-<Grid container direction="column" justifyContent="center"
-  alignItems="center" spacing={3}>
-    <Grid item>
+            <div style={{ display: "flex", flexDirection: "column", minHeight: "100vh" }}>
+                {/* Content Container */}
+                <div style={{ flex: 1 }}>
+                    <Card style={{ backgroundColor: "red", minHeight: "100%" }}>
+                        <Grid
+                            container
+                            direction="column"
+                            justifyContent="center"
+                            alignItems="center"
+                            spacing={3}
+                        >
+                            <Grid item>
+                                <Routes>
+                                    <Route path="/" element={<Homepage />} />
+                                    <Route path="/munichMap" element={<Munichmap />} />
+                                </Routes>
+                            </Grid>
+                        </Grid>
+                    </Card>
+                </div>
+                {/* Bottom Navbar */}
+                    <BottomNavigation showLabels value={"Johannes"}>
+                        <Link to="/">
+                            <BottomNavigationAction icon={<Avatar src={homePage} />} />
+                        </Link>
+                        <Link to="/munichMap">
+                            <BottomNavigationAction icon={<Avatar src={munichMap} />} />
+                        </Link>
+                        <Link to="/profile">
+                        <BottomNavigationAction icon={<Avatar src={userPic} />} />
+                        </Link>
+                    </BottomNavigation>
+            </div>
+        </BrowserRouter>
+    );
+};
 
-<Routes>
-          <Route
-            path="/"
-            element={<Homepage />}
-          ></Route>
-
-          <Route
-            path="/munichMap"
-            element={<Munichmap />}
-          />
-        </Routes>
-        </Grid>
-<Grid item>
-        
-      <BottomNavigation
-    showLabels
-    value={"Johannes"}
-  >
-  <Link to="/">
-  <BottomNavigationAction icon={<Avatar src={homePage} />}   />
-  </Link>
-  <Link to="/munichMap">
-    <BottomNavigationAction icon={<Avatar src={munichMap}/> }  />
-    </Link>
-    <BottomNavigationAction icon={<Avatar src={userPic}/>} />
-  </BottomNavigation>
-  <Outlet></Outlet>
-  </Grid>
-  </Grid>
-  </Card>
-  </BrowserRouter>
-    )
-  }
-  
-  export default Navbar
+export default Navbar;
