@@ -1,31 +1,35 @@
 meta {
-  name: Put POI
+  name: Update POI
   type: http
-  seq: 2
+  seq: 3
 }
 
 put {
-  url: http://127.0.0.1:8000/api/v1/pois
+  url: http://127.0.0.1:8000/api/v1/pois/8
   body: json
   auth: none
 }
 
 body:json {
   {
-    "latitude": 48.1611227,
+    "latitude": 48.1611228,
     "longitude": 11.5897455,
     "poiType": "flood",
     "thread": [
       {
         "author": "Johannes Da Big",
-        "content": "Damn, so hot today! 🥵"
+        "content": "Damn, so cold today! 🥵"
       },
       {
         "author": "Petter Da Fam",
-        "content": "Indeeeed! Beer?"
+        "content": "Indeeeed! Ice cream?"
+      },
+      {
+        "author": "Diego Da Man",
+        "content": "Sure thing!!!"
       }
     ],
-    "upvotes": 0,
+    "upvotes": 10,
     "creationDate": "2023-11-18T11:43:54.033654",
     "relatedEvent": "",
     "official": true,

@@ -10,6 +10,7 @@ import {
     Avatar,
     MenuItem,
     ListItemIcon,
+    Icon,
     Box,
     Menu,
     DialogTitle,
@@ -28,22 +29,26 @@ import { Outlet, Link, BrowserRouter, Route, Routes } from "react-router-dom";
 import { Card } from "@mui/material";
 import Homepage from "../../pages/Homepage";
 import Munichmap from "../../pages/Munichmap";
+import HomeIcon from "@mui/icons-material/Home";
+import MapIcon from "@mui/icons-material/Map";
+import AccountCircleIcon from "@mui/icons-material/AccountCircle"
 
 const Navbar = () => {
     return (
         <BrowserRouter>
-            <div style={{ display: "flex", flexDirection: "column", minHeight: "100vh" }}>
+            <div style={{ display: "flex", flexDirection: "column", height: "100vh"}}>
                 {/* Content Container */}
-                <div style={{ flex: 1 }}>
-                    <Card style={{ minHeight: "100%" }}>
+                <div style={{ flex: 1, height: "93vh", backgroundColor: "green"}}>
+                    <Card style={{height: "100%" }}>
                         <Grid
                             container
                             direction="column"
                             justifyContent="center"
                             alignItems="center"
                             spacing={3}
+                            style={{height: "100%" }}
                         >
-                            <Grid item>
+                            <Grid item style={{height:"100%"}} >
                                 <Routes>
                                     <Route path="/" element={<Homepage />} />
                                     <Route path="/munichMap" element={<Munichmap />} />
@@ -53,17 +58,17 @@ const Navbar = () => {
                     </Card>
                 </div>
                 {/* Bottom Navbar */}
-                    <BottomNavigation showLabels value={"Johannes"}>
+                <BottomNavigation showLabels value={"Johannes"} style={{height: "7vh"}}>
                         <Link to="/">
-                            <BottomNavigationAction icon={<Avatar src={homePage} />} />
+                            <BottomNavigationAction icon={<HomeIcon style={{fontSize:"35px"}}/>} />
                         </Link>
                         <Link to="/munichMap">
-                            <BottomNavigationAction icon={<Avatar src={munichMap} />} />
+                            <BottomNavigationAction icon={<MapIcon style={{fontSize:"35px"}}/>} />
                         </Link>
                         <Link to="/profile">
-                        <BottomNavigationAction icon={<Avatar src={userPic} />} />
+                        <BottomNavigationAction icon={<AccountCircleIcon style={{fontSize:"35px"}}/>} />
                         </Link>
-                    </BottomNavigation>
+                </BottomNavigation>
             </div>
         </BrowserRouter>
     );
