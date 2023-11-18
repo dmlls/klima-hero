@@ -9,6 +9,7 @@ from src.utils import populate_db
 
 logger = logging.getLogger(__name__)
 
+### Comment out if DB is not to be cleaned on startup. #########################
 for tbl in reversed(models.Base.metadata.sorted_tables):
     tbl.drop(database.engine, checkfirst=True)
 models.Base.metadata.create_all(bind=database.engine)
@@ -27,7 +28,7 @@ api_v1 = FastAPI(
 
 # CORS
 origins = [
-    "http://localhost",
+    "*",
 ]
 
 # Include middleware

@@ -8,6 +8,8 @@ from src.base_model import CamelModel
 class PoiType(Enum):
 
     FLOOD = "flood"
+    FALLEN_TREE = "fallen_tree"
+    OTHER = "other"
 
 
 class PutThreadMessageRequest(CamelModel):
@@ -49,6 +51,7 @@ class PoiRequest(CamelModel):
 class Poi(PoiRequest):
 
     id: str
+    icon_url: str
 
     @field_validator("id", mode="before")
     @classmethod

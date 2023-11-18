@@ -18,13 +18,25 @@
     {
         "latitude": 48.1611227,
         "longitude": 11.5897455,
-        "poiType": "flood",
+        "poiType": "fallen_tree",
         "thread": [
           {
-            "author": "Diego Miguel",
-            "content": "Reporting some floods over here 🌊"
+            "author": "Landeshauptstadt München",
+            "content": "A tree has fallen on the pavement. The emergency services are already on it."
+          }
+        ],
+        "official": true
+    },
+    {
+        "latitude": 48.18004,
+        "longitude": 11.55290,
+        "poiType": "other",
+        "thread": [
+          {
+            "author": "Mariz Awad",
+            "content": "A bottle fell from the garbage bin because of the wind and now all the glass is scattered on the ground. Be careful!"
           }
         ],
         "official": false
-      }
+    }
 ]
