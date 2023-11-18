@@ -6,14 +6,15 @@ import { makeStyles } from '@mui/material/styles';
 
 const searchBarStyle = {
     root: {
-        padding: '2px 4px',
+        padding: '4px 6px',
         display: 'flex',
         alignItems: 'center',
-        width: '80%',
+        width: '85%',
         position: 'absolute',
-        top: 20,
+        top: 30,
         left: '50%',
         transform: 'translateX(-50%)',
+        borderRadius: '16px',
         zIndex: 1,
     },
     input: {

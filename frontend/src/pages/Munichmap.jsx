@@ -56,6 +56,7 @@ const Munichmap = () => {
   const [mapInitialized, setMapInitialized] = useState(false);
   const [openModal, setOpenModal] = useState(false);
   const [clickedLocation, setClickedLocation] = useState(null);
+  const [marker, setMarker] = useState(null);
 
   const handleOpenModal = () => {
     setOpenModal(true);
@@ -82,20 +83,13 @@ const Munichmap = () => {
     });
   };
 
-  useEffect(() => {
-    if (mapInitialized) {
-      const handleClick = (e) => {
-        const { lngLat } = e;
-        setClickedLocation({ latitude: lngLat.lat, longitude: lngLat.lng });
-      };
-
-      map.current.on('click', 'points', handleClick);
-
-      return () => {
-        map.current.off('click', 'points', handleClick);
-      };
-    }
-  }, [mapInitialized]);
+  const handleMapClick = (e) => {
+    const { lngLat } = e;
+    setClickedLocation({
+      latitude: lngLat.lat,
+      longitude: lngLat.lng,
+    });
+  };
 
 
   useEffect(() => {
@@ -114,6 +108,55 @@ const Munichmap = () => {
       });
     }
   }, [API_KEY, lng, lat, zoom, mapInitialized]);
+
+
+  useEffect(() => {
+    // Initialize the map
+    if (mapInitialized) {
+      console.log("Hello")
+      map.current.on('click', handleMapClick);
+    }
+    return () => {
+      console.log("Bye")
+      // Remove the click event listener when the component unmounts
+      map.current.off('click', handleMapClick);
+    };
+  }, [mapInitialized, poiData]);
+
+
+  useEffect(() => {
+    // ... (your existing code)
+
+    // Check if a location has been clicked
+    if (clickedLocation) {
+      // Remove the previous marker
+      if (marker) {
+        marker.remove();
+      }
+
+      // Add a marker at the clicked location
+      const markerElement = document.createElement('div');
+      markerElement.className = 'marker';
+      const newMarker = new maplibregl.Marker(markerElement)
+          .setLngLat([clickedLocation.longitude, clickedLocation.latitude])
+          .addTo(map.current);
+
+      // Save the marker instance
+      setMarker(newMarker);
+
+      // Save the latitude and longitude in a variable or use as needed
+      const { latitude, longitude } = clickedLocation;
+      console.log(`Clicked Location: ${latitude}, ${longitude}`);
+
+      // Reset the clickedLocation state
+      setClickedLocation(null);
+    }
+  }, [clickedLocation, marker]);
+
+
+
+
+
 
   useEffect(() => {
     // Fetch data after the map is initialized
@@ -243,20 +286,22 @@ const Munichmap = () => {
         {/* Map container */}
         <div ref={mapContainer} className="map" style={{ width: '100vw', height: '100%', position: 'relative' }}>
           {/* Floating "add button" */}
-          <Fab
-              color="primary"
-              aria-label="add"
-              style={{
-                position: 'absolute',
-                bottom: '20px',
-                right: '20px',
-                margin: '4px',
-                zIndex: 1000,
-              }}
-              onClick={handleOpenModal}
-          >
-            <CrisisAlertIcon />
-          </Fab>
+          {marker && (
+              <Fab
+                  color="primary"
+                  aria-label="add"
+                  style={{
+                    position: 'absolute',
+                    bottom: '20px',
+                    right: '20px',
+                    margin: '4px',
+                    zIndex: 1000,
+                  }}
+                  onClick={handleOpenModal}
+              >
+                <CrisisAlertIcon />
+              </Fab>
+          )}
 
           {/* SearchBar component */}
           <SearchBar />
