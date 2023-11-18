@@ -11,9 +11,11 @@ router = APIRouter()
 def get_warning_cells():
     return read_cells()
 
+
 @router.get("/alerts", response_model=Alert)
 def get_alerts():
-    return generate_alert()
+    return Alert(**generate_alert())
+
 
 @router.get("/alerts/of", response_model=Alert)
 def oktober_fest():

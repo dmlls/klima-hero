@@ -1,26 +1,26 @@
 import json
-import os
-from datetime import date
 import datetime
+from datetime import date
 from random import randrange
+from pathlib import Path
+
 
 def read_cells():
-    script_dir = os.path.dirname(__file__)
-    rel_path = "../data/bright_sky/warning_cells_munich.json"
-    file_path = os.path.join(script_dir, rel_path)
-    with open(file_path, "r") as f:
+    current_dir =  Path(__file__).parent.resolve()
+    with open(current_dir / "../data/sources/bright_sky_munich.json", "r") as f:
         data = json.load(f)
     return data
 
+
 def generate_alert():
     start = datetime.datetime.now() + datetime.timedelta(days=randrange(start = -2, stop = 1),
-                                                         hours = randrange(start = -5, stop = 7),
-                                                         minutes = randrange(start = -5, stop = 7))
-    
+                                                         hours=randrange(start = -5, stop = 7),
+                                                         minutes=randrange(start = -5, stop = 7))
+
     end  = datetime.datetime.now() + datetime.timedelta(days=randrange (start = 1, stop = 4),
-                                             hours = randrange(start = -5, stop = 7),
-                                             minutes = randrange(start = -5, stop = 7))
-    
+                                             hours=randrange(start = -5, stop = 7),
+                                             minutes=randrange(start = -5, stop = 7))
+
     categories = ['heat wave', 'rain', 'wind Gusts']
     category = categories[randrange(start=0, stop = len(categories))]
     severities = ['strong', 'extreme']
@@ -35,18 +35,15 @@ def generate_alert():
         'severity': severity,
         'description': description
     }
-    
     return alert
-    
+
 
 def generate_oktoberfest():
-
     alert = {
-        'effective': date.today(),
-        'expires' : date.today() + datetime.timedelta(days=16),
+        'effective': datetime.now(),
+        'expires': datetime.now() + datetime.timedelta(days=16),
         'category': 'Beer',
         'severity': 'extreme',
-        'description': 'This is official wanrning of drunk sightings all over the city'
+        'description': 'This is official warning of drunk sightings all over the city'
     }
-    
     return alert

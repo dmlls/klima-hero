@@ -40,7 +40,7 @@ class PoiRequest(CamelModel):
     creation_date: datetime = datetime.now()
     related_event: str = ""
     official: bool
-    active: bool
+    active: bool = True
 
     class Config:
         from_attributes = True

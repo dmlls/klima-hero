@@ -1,0 +1,30 @@
+[
+    {
+        "latitude": 48.2627204,
+        "longitude": 11.6685920,
+        "poiType": "flood",
+        "thread": [
+          {
+            "author": "Johaness Getzner",
+            "content": "The whole street is covered by the water."
+          },
+          {
+            "author": "Peter Fam",
+            "content": "Can confirm!"
+          }
+        ],
+        "official": false
+    },
+    {
+        "latitude": 48.1611227,
+        "longitude": 11.5897455,
+        "poiType": "flood",
+        "thread": [
+          {
+            "author": "Diego Miguel",
+            "content": "Reporting some floods over here 🌊"
+          }
+        ],
+        "official": false
+      }
+]
