@@ -15,8 +15,7 @@ def create_poi(db: Session, poi: schemas.PoiCreate):
         active=poi.active
     )
     db.add(db_poi)
-    db.commit()
-    db.refresh(db_poi)
+    db.flush()
     for message in poi.thread:
         db_message = models.ThreadMessage(**message.dict(), poi_id=db_poi.id)
         db.add(db_message)
