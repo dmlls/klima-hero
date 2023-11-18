@@ -1,6 +1,7 @@
 from datetime import datetime
 from fastapi import APIRouter, Depends, status
-from .models import Poi, PoiType, PutPoiRequest
+from .models import Poi, PoiType, PutPoiRequest, GetClosestPoisRequest
+from.services import get_closest_pois
 from typing import List
 
 router = APIRouter()
@@ -39,3 +40,8 @@ def get_all_pois_view():
             active=True,
         )
     ]
+
+
+@router.get("closest-pois",  response_model=List[Poi])
+def get_closest_pois_view(request: GetClosestPoisRequest):
+    return get_closest_pois(request.long, request.lat, request.top_k)
