@@ -14,7 +14,7 @@ def parse_drinking_water() -> List[dict]:
         {
             "lat": element["lat"],
             "lon": element["lon"],
-            "icon_url": icons["fountain"]
+            "icon_url": icons["Fountain"]
         }
         for element in parsed["elements"]
     ]

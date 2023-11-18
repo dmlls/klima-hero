@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import {
     AppBar,
     Button,
@@ -31,6 +31,7 @@ import MapIcon from "@mui/icons-material/Map";
 import AccountCircleIcon from "@mui/icons-material/AccountCircle"
 
 const Navbar = () => {
+    const [currPage, setCurrPage] = React.useState("home");
     return (
         <BrowserRouter>
             <div style={{ display: "flex", flexDirection: "column", height: "100vh"}}>
@@ -56,16 +57,17 @@ const Navbar = () => {
                 </div>
                 {/* Bottom Navbar */}
                 <BottomNavigation showLabels value={"Johannes"} style={{justifyContent:"space-between", paddingRight:"10px", paddingLeft:"10px"}}>
-                        <Link to="/">
-                            <BottomNavigationAction icon={<HomeIcon style={{fontSize:"35px"}} />} />
+                        <Link to="/" style={ {border: currPage==="home" ?  "solid 1px":""}}>
+                            <BottomNavigationAction  icon={<HomeIcon style={{fontSize:"35px"}} onClick={()=>setCurrPage("home")}
+                             />}/>
                             <Typography variant="body2" color={"black"}>Home</Typography>
                         </Link>
-                        <Link to="/munichMap">
-                            <BottomNavigationAction icon={<MapIcon style={{fontSize:"35px"}}/>} />
+                        <Link to="/munichMap" style={ {border: currPage==="map" ?  "solid 1px":""}}>
+                            <BottomNavigationAction icon={<MapIcon style={{fontSize:"35px"}}  onClick={()=>setCurrPage("map")}/>}/>
                             <Typography variant="body2" color={"black"}>Map</Typography>
                         </Link>
-                        <Link to="/profile">
-                        <BottomNavigationAction icon={<AccountCircleIcon style={{fontSize:"35px"}}/>} />
+                        <Link to="/profile" style={ {border: currPage==="profile" ?  "solid 1px":""}}>
+                        <BottomNavigationAction icon={<AccountCircleIcon style={{fontSize:"35px"}}   onClick={()=>setCurrPage("profile")}/>} />
                         <Typography variant="body2" color={"black"}>Profile</Typography>
                         </Link>
                 </BottomNavigation>
