@@ -24,4 +24,4 @@ def parse_user_pois() -> List[dict]:
     current_dir =  Path(__file__).parent.resolve()
     with open(current_dir / "user_pois.json", "r", encoding="utf-8") as f:
         parsed = json.load(f)
-    return [{"icon_url": icons["flood"], **element} for element in parsed]
+    return [{"icon_url": icons["Flood"], **element} for element in parsed]
