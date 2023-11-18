@@ -5,18 +5,27 @@ from fastapi import APIRouter, Depends, status
 from sqlalchemy.orm import Session
 
 from .models import Poi, PoiRequest, GetClosestPoisRequest
-from .services import create_poi, get_all_pois, get_closest_pois
+from .services import create_poi, update_poi, get_all_pois, get_closest_pois
 from src.data.db import database
 
 router = APIRouter()
 
 
 @router.put("", status_code=status.HTTP_201_CREATED)
-def put_poi_view(
+def create_poi_view(
     request: PoiRequest,
     db: Session = Depends(database.get_db)
 ):
     create_poi(db, request)
+
+
+@router.put("/{poi_id}")
+def update_poi_view(
+    poi_id: str,
+    request: PoiRequest,
+    db: Session = Depends(database.get_db)
+):
+    update_poi(db, poi_id, request)
 
 
 @router.get("/all", response_model=List[Poi])

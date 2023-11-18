@@ -12,6 +12,11 @@ def create_poi(db: Session, poi: PoiRequest) -> None:
     crud.create_poi(db, db_poi)
 
 
+def update_poi(db: Session, poi_id: str, poi: PoiRequest) -> None:
+    db_poi = schemas.PoiCreate(**poi.dict())
+    crud.update_poi(db, poi_id, db_poi)
+
+
 def get_all_pois(db: Session) -> List[Poi]:
     return crud.get_all_pois(db)
 
