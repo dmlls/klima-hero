@@ -6,6 +6,9 @@ import { Modal, Fab} from '@mui/material';
 import CrisisAlertIcon from '@mui/icons-material/CrisisAlert';
 import ModalContent from '../components/modalContent/modalContent';
 import PoiModal from "../components/poiMarker/poiModal";
+import * as maptilersdk from '@maptiler/sdk';
+import "@maptiler/sdk/dist/maptiler-sdk.css";
+import { MapStyle } from '@maptiler/sdk';
 
 class Poi {
   constructor(data) {
@@ -122,16 +125,21 @@ const Munichmap = () => {
   useEffect(() => {
     // Initialize the map
     if (!mapInitialized) {
-      map.current = new maplibregl.Map({
+      maptilersdk.config.apiKey = API_KEY;
+      map.current = new maptilersdk.Map({
         container: mapContainer.current,
-        style: `https://api.maptiler.com/maps/streets-v2/style.json?key=${API_KEY}`,
         center: [lng, lat],
         zoom: zoom,
+        style: MapStyle.DATAVIZ.LIGHT
       });
-
-      // Listen for the map load event
       map.current.on('load', () => {
         setMapInitialized(true);
+        const mapContainerElement = map.current.getContainer();
+        const elementsToHide = mapContainerElement.querySelectorAll('.maplibregl-ctrl-bottom-left, .maplibregl-ctrl-bottom-right');
+
+        //elementsToHide.forEach(element => {
+        //  element.style.display = 'none';
+        //});
       });
     }
   }, [API_KEY, lng, lat, zoom, mapInitialized]);
