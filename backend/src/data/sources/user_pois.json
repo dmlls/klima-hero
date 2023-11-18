@@ -2,7 +2,7 @@
     {
         "latitude": 48.2627204,
         "longitude": 11.6685920,
-        "poiType": "flood",
+        "poiType": "Flood",
         "thread": [
           {
             "author": "Johaness Getzner",
@@ -18,7 +18,7 @@
     {
         "latitude": 48.1611227,
         "longitude": 11.5897455,
-        "poiType": "fallen_tree",
+        "poiType": "Fallen Tree",
         "thread": [
           {
             "author": "Landeshauptstadt München",
@@ -30,7 +30,7 @@
     {
         "latitude": 48.18004,
         "longitude": 11.55290,
-        "poiType": "other",
+        "poiType": "Other",
         "thread": [
           {
             "author": "Mariz Awad",
