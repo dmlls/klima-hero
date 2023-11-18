@@ -8,6 +8,8 @@ from src.base_model import CamelModel
 class PoiType(Enum):
 
     FLOOD = "flood"
+    FALLEN_TREE = "fallen_tree"
+    OTHER = "other"
 
 
 class PutThreadMessageRequest(CamelModel):
