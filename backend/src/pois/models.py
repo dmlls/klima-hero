@@ -35,3 +35,9 @@ class PutPoiRequest(Poi):
 
     class Config:
         exclude = ["id_"]
+
+
+class GetClosestPoisRequest(CamelModel):
+    long: float
+    lat: float
+    top_k: int = 5
