@@ -9,7 +9,7 @@ from src.data.db import crud, schemas
 
 def create_poi(db: Session, poi: PoiRequest) -> None:
     db_poi = schemas.PoiCreate(**poi.dict())
-    crud.create_poi(db, db_poi)
+    crud.create_pois(db, db_poi)
 
 
 def update_poi(db: Session, poi_id: str, poi: PoiRequest) -> None:

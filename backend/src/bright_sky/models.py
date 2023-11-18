@@ -1,20 +1,22 @@
 from typing import List
 from src.base_model import CamelModel
-from datetime import date
+from datetime import datetime
 
 
 class Cell(CamelModel):
 
-    type: str
     id: str
+    type: str
     geometry: dict
     geometry_name: str
     properties: dict
     bbox: List[float]
 
+
 class Alert(CamelModel):
-    effective: date
-    expires: date
+
+    effective: datetime
+    expires: datetime
     category: str
     severity: str
     description: str
