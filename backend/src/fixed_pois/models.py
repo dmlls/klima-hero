@@ -5,7 +5,7 @@ from src.base_model import CamelModel
 
 class FixedPoiType(Enum):
 
-    FOUNTAIN = "fountain"
+    FOUNTAIN = "Fountain"
 
 
 class FixedPoiRequest(CamelModel):
