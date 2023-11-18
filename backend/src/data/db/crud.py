@@ -17,7 +17,8 @@ def create_pois(db: Session, pois: Union[schemas.PoiCreate, List[schemas.PoiCrea
             creation_date=poi.creation_date,
             related_event=poi.related_event,
             official=poi.official,
-            active=poi.active
+            active=poi.active,
+            icon_url=poi.icon_url
         )
         db.add(db_poi)
         db.flush()
@@ -27,9 +28,9 @@ def create_pois(db: Session, pois: Union[schemas.PoiCreate, List[schemas.PoiCrea
     db.commit()
 
 
-def update_poi(db: Session, id_: str, poi: schemas.PoiCreate):
+def update_poi(db: Session, id_: str, poi: schemas.PoiCreate) -> bool:
     id_ = int(id_)
-    db.query(models.Poi).filter(models.Poi.id == id_).update(
+    matches = db.query(models.Poi).filter(models.Poi.id == id_).update(
         {
             "latitude": poi.latitude,
             "longitude": poi.longitude,
@@ -41,11 +42,14 @@ def update_poi(db: Session, id_: str, poi: schemas.PoiCreate):
             "active": poi.active
         }
     )
+    if matches == 0:
+        return False
     db.query(models.ThreadMessage).filter(models.ThreadMessage.poi_id == id_).delete()
     for message in poi.thread:
         db_message = models.ThreadMessage(**message.dict(), poi_id=id_)
         db.add(db_message)
     db.commit()
+    return True
 
 
 def get_poi(db: Session, id_: int):
@@ -67,6 +71,7 @@ def create_fixed_pois(
             latitude=poi.latitude,
             longitude=poi.longitude,
             poi_type=poi.poi_type.value,
+            icon_url=poi.icon_url
         )
         db.add(db_poi)
     db.commit()

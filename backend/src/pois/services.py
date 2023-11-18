@@ -4,17 +4,19 @@ from geopy.distance import geodesic
 from sqlalchemy.orm import Session
 
 from .models import PoiRequest, Poi
+from src.icons import icons
 from src.data.db import crud, schemas
 
 
 def create_poi(db: Session, poi: PoiRequest) -> None:
-    db_poi = schemas.PoiCreate(**poi.dict())
+    db_poi = schemas.PoiCreate(**poi.dict(), icon_url=icons[poi.poi_type.value])
     crud.create_pois(db, db_poi)
 
 
-def update_poi(db: Session, poi_id: str, poi: PoiRequest) -> None:
-    db_poi = schemas.PoiCreate(**poi.dict())
-    crud.update_poi(db, poi_id, db_poi)
+def update_poi(db: Session, poi_id: str, poi: PoiRequest) -> bool:
+    db_poi = schemas.PoiCreate(**poi.dict(), icon_url=icons[poi.poi_type.value])
+    updated = crud.update_poi(db, poi_id, db_poi)
+    return updated
 
 
 def get_all_pois(db: Session) -> List[Poi]:

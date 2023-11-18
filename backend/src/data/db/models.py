@@ -15,6 +15,7 @@ class FixedPoi(Base):
     longitude = Column(Float, index=True)
     poi_type = Column(String, CheckConstraint(
         f"poi_type IN ({','.join(repr(poi_type.value) for poi_type in FixedPoiType)})"))
+    icon_url = Column(String)
 
 
 class Poi(Base):
@@ -31,6 +32,7 @@ class Poi(Base):
     related_event = Column(String)
     official = Column(Boolean)
     active = Column(Boolean)
+    icon_url = Column(String)
 
 
 class ThreadMessage(Base):
