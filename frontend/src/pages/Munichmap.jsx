@@ -307,7 +307,7 @@ const Munichmap = () => {
 
 
   return (
-      <div className="map-wrap" style={{ width: '100%', height: '100%' }}>
+      <div className="map-wrap" style={{ width: '100%', height: '103%' }}>
         {/* Map container */}
         <div ref={mapContainer} className="map" style={{ width: '100vw', height: '100%', position: 'relative' }}>
           {/* Floating "add button" */}
