@@ -1,0 +1,26 @@
+meta {
+  name: Put POI
+  type: http
+  seq: 2
+}
+
+post {
+  url: http://127.0.0.1:8000/api/v1/pois/create
+  body: json
+  auth: none
+}
+
+body:json {
+  {
+    "id": "string",
+    "latitude": 0,
+    "longitude": 0,
+    "poiType": "flood",
+    "thread": [],
+    "upvotes": 0,
+    "creationDate": "2023-11-18T11:43:54.033654",
+    "relatedEvent": "",
+    "official": true,
+    "active": true
+  }
+}
