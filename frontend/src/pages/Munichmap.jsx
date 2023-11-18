@@ -55,6 +55,7 @@ const Munichmap = () => {
   const [cellsData, setCellsData] = useState(null);
   const [mapInitialized, setMapInitialized] = useState(false);
   const [openModal, setOpenModal] = useState(false);
+  const [clickedLocation, setClickedLocation] = useState(null);
 
   const handleOpenModal = () => {
     setOpenModal(true);
@@ -80,6 +81,22 @@ const Munichmap = () => {
       );
     });
   };
+
+  useEffect(() => {
+    if (mapInitialized) {
+      const handleClick = (e) => {
+        const { lngLat } = e;
+        setClickedLocation({ latitude: lngLat.lat, longitude: lngLat.lng });
+      };
+
+      map.current.on('click', 'points', handleClick);
+
+      return () => {
+        map.current.off('click', 'points', handleClick);
+      };
+    }
+  }, [mapInitialized]);
+
 
   useEffect(() => {
     // Initialize the map
@@ -126,7 +143,7 @@ const Munichmap = () => {
     if (true) {
       const fetchData = async () => {
         try {
-          const response = await fetch(`http://127.0.0.1:8000/api/v1/bright-sky/warning-cells`);
+          const response = await fetch(`http://127.0.0.1:8000/api/v1/bright-sky/warning-cells/active`);
 
           if (!response.ok) {
             throw new Error('Network response was not ok');
