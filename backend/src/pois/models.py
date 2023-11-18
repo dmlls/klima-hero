@@ -19,7 +19,7 @@ class ThreadMessage(CamelModel):
 
 class Poi(CamelModel):
 
-    id_: str
+    id: str
     latitude: float
     longitude: float
     poi_type: PoiType
@@ -33,4 +33,5 @@ class Poi(CamelModel):
 
 class PutPoiRequest(Poi):
 
-    pass
+    class Config:
+        exclude = ["id_"]
