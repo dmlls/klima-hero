@@ -13,6 +13,7 @@
             "content": "Can confirm!"
           }
         ],
+        "upvotes": 9,
         "official": false
     },
     {
@@ -25,6 +26,7 @@
             "content": "A tree has fallen on the pavement. The emergency services are already on it."
           }
         ],
+        "upvotes": 23,
         "official": true
     },
     {
@@ -37,6 +39,7 @@
             "content": "A bottle fell from the garbage bin because of the wind and now all the glass is scattered on the ground. Be careful!"
           }
         ],
+        "upvotes": 5,
         "official": false
     }
 ]
