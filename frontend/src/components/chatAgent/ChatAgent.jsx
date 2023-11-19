@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { Avatar, Box, Typography, IconButton, CircularProgress } from '@mui/material';
-import EarthBot from '../../assets/earthBot2.png';
+import EarthBot from '../../assets/chatbot.png';
 import ChatIcon from '@mui/icons-material/Chat';
 
 const ChatAgent = () => {
@@ -36,7 +36,7 @@ const ChatAgent = () => {
             try {
                 // Simulating API response after 2 seconds
                 setTimeout(() => {
-                    setAgentText("Today, the weather is 25°C, cloudy, and windy. There is an extreme storm warning in effect for your area starting from 19/11/2023 04:14:17 until 20/11/2023 13:12:17. Please stay safe and be prepared for the extreme conditions.");
+                    setAgentText("Today, the weather is 25°C, cloudy, and windy. There is an extreme storm warning in effect for your area starting from 19/11/2023 04:14:17 until 20/11/2023. Please stay safe and be prepared for the extreme conditions.");
                     setLoading(false);
                 }, 2000);
             } catch (error) {
@@ -73,12 +73,11 @@ const ChatAgent = () => {
                 )}
             </div>
             <div style={{ position: 'relative', display: 'flex', flexDirection: 'column', alignItems: 'center' }}>
-                <Avatar style={{ width: "50px", height: "50px" }} src={EarthBot} />
+                <Avatar style={{color:"white", width: "35px", height: "35px" }} src={EarthBot} />
                 <IconButton
-                    style={{ position: 'absolute', top: '-5%', right: '-35%', backgroundColor: 'transparent' }}
+                    style={{ position: 'absolute', top: '-8%', right: '-65%', backgroundColor: 'transparent' }}
                     aria-label="Chat"
                 >
-                    <ChatIcon style={{ color: 'white' }} />
                 </IconButton>
             </div>
         </Box>

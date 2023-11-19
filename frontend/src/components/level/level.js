@@ -11,7 +11,7 @@ const LevelIndicator = () => {
             style={{
                 position: 'relative',
                 backgroundColor: "#5451D6",
-                padding: '16px',
+                padding: '12px',
                 borderRadius: '20px',
                 display: 'flex',
                 flexDirection: 'column',

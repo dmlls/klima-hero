@@ -5,12 +5,12 @@ import { Link } from 'react-router-dom';
 
 const NearbyAlerts = () => {
     return (
-        <Card style={{ backgroundColor: "#5451D6", borderRadius: '20px', padding: "10px" }}>
+        <Card style={{ backgroundColor: "#5451D6", borderRadius: '20px', padding: "5px" }}>
             <CardContent>
                 <Grid container spacing={2}>
                     {/* Left column with the title and list of bullet points */}
                     <Grid item xs={8}>
-                        <Typography color={"white"} variant='h4' align='left' style={{ marginBottom: '16px' }}>Near you...</Typography>
+                        <Typography color={"white"} variant='h4' align='left' style={{ marginBottom: '12px' }}>Near you...</Typography>
 
                         <Typography color={"white"} variant='subtitle1' align='left'>
                             5km&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Fallen tree
@@ -26,7 +26,7 @@ const NearbyAlerts = () => {
 
                     {/* Right column with the custom button and text */}
                     <Grid item xs={4} container justifyContent="center" alignItems="center">
-                        <Grid item style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', border: '0px solid white', borderRadius: '8px', padding: 'px' }}>
+                        <Grid item style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', border: '0px solid white', borderRadius: '8px', padding: '0px' }}>
                             <Link to="/munichMap" style={{ textDecoration: 'none' }}>
                                 <IconButton
                                     style={{
