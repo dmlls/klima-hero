@@ -26,6 +26,16 @@ class Poi {
   }
 }
 
+class FixedPoi {
+  constructor(data) {
+    this.latitude = data.latitude;
+    this.longitude = data.longitude;
+    this.poiType = data.poiType;
+    this.id = data.id;
+    this.iconUrl = data.iconUrl;
+  }
+}
+
 class Cell {
   constructor(data) {
     this.type = data.type || "Feature";
@@ -64,6 +74,7 @@ const Munichmap = () => {
   const [zoom] = useState(10);
   const [API_KEY] = useState('N5ziFaB0ErlP8IQFCFOt');
   const [poiData, setPoiData] = useState(null);
+  const [fixedPoiData, setFixedPoiData] = useState(null);
   const [alertData, setAlertData] = useState(null);
   const [cellsData, setCellsData] = useState(null);
   const [mapInitialized, setMapInitialized] = useState(false);
@@ -103,6 +114,18 @@ const Munichmap = () => {
             if (error) throw error;
             if (!map.current.hasImage(alert.id)) {
               map.current.addImage(alert.id, image);
+            }
+          }
+      );
+    });
+    if (!fixedPoiData) return;
+    fixedPoiData.forEach(fixedPoi => {
+      map.current.loadImage(
+          fixedPoi.iconUrl,
+          (error, image) => {
+            if (error) throw error;
+            if (!map.current.hasImage(fixedPoi.id)) {
+              map.current.addImage(fixedPoi.id, image);
             }
           }
       );
@@ -259,6 +282,25 @@ const Munichmap = () => {
       };
       fetchData();
     }
+    if (mapInitialized && !fixedPoiData) {
+      const fetchData = async () => {
+        try {
+          const response = await fetch(`http://127.0.0.1:8000/api/v1/fixed-pois/all`);
+
+          if (!response.ok) {
+            throw new Error('Network response was not ok');
+          }
+
+          const result = await response.json();
+          console.log(result)
+          const convertedData = result.map(item => new FixedPoi(item));
+          setFixedPoiData(convertedData);
+        } catch (error) {
+          console.error('Error fetching data:', error);
+        }
+      };
+      fetchData();
+    }
     if (mapInitialized && !alertData) {
       const fetchData = async () => {
         try {
@@ -269,7 +311,6 @@ const Munichmap = () => {
           }
 
           const result = await response.json();
-          console.log(result)
           const convertedData = result.map(item => new Alert(item));
           setAlertData(convertedData);
         } catch (error) {
@@ -376,6 +417,44 @@ const Munichmap = () => {
         layout: {
           'icon-image': ['get', 'icon-image'],
           'icon-size': 0.1,
+          'icon-allow-overlap': true,
+        },
+      });
+    }
+  }, [alertData]);
+
+  useEffect(() => {
+    if (mapInitialized && fixedPoiData) {
+      loadCustomImages();
+      map.current.getSource('fixedpois') && map.current.removeLayer('fixedpois');
+      map.current.getSource('fixedpois') && map.current.removeSource('fixedpois');
+
+      // Add a new marker layer for each point
+      map.current.addSource('fixedpois', {
+        type: 'geojson',
+        data: {
+          type: 'FeatureCollection',
+          features: fixedPoiData.map((fixedPoi) => ({
+            type: 'Feature',
+            geometry: {
+              type: 'Point',
+              coordinates: [fixedPoi.longitude, fixedPoi.latitude],
+            },
+            properties: {
+              'icon-image': fixedPoi.id,
+              'icon-size': fixedPoi.poiType === 'Fountain' ? 0.02 : 0.07,
+            },
+          })),
+        },
+      });
+
+      map.current.addLayer({
+        id: 'fixedpois',
+        type: 'symbol',
+        source: 'fixedpois',
+        layout: {
+          'icon-image': ['get', 'icon-image'],
+          'icon-size':['get', 'icon-size'],
           'icon-allow-overlap': true,
         },
       });

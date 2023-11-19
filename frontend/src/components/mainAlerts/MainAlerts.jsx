@@ -21,7 +21,7 @@ const MainAlerts = () => {
                 }
             />
             <Chip
-                style={{ backgroundColor: "#5451D6", border: '4px solid #23CE6B', width: "35%", height: "50px", paddingLeft: "4px" }}
+                style={{ backgroundColor: "#5451D6", border: '4px solid #dabb2d', width: "35%", height: "50px", paddingLeft: "4px" }}
                 label={<DirectionsBikeIcon style={{ fontSize: 28, color: 'white' }} />}
             />
         </Grid>

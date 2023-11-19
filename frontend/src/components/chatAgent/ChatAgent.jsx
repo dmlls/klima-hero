@@ -15,7 +15,7 @@ const ChatAgent = () => {
                 flexDirection: 'column-reverse',
                 justifyContent: 'space-between',
                 alignItems: 'flex-start',
-                width: '50%'
+                width: '91%'
             }}
         >
             <div style={{ flex: 1, paddingTop: '16px' }}>

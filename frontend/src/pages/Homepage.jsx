@@ -4,19 +4,20 @@ import MainAlerts from '../components/mainAlerts/MainAlerts'
 import { Card, CardContent, Collapse, Grid, Typography } from '@mui/material'
 import NearbyAlerts from '../components/nearbyAlerts/NearbyAlerts'
 import ChatAgent from '../components/chatAgent/ChatAgent'
+import LevelIndicator from "../components/level/level";
 
 const Homepage = () => {
   return (
     <div style={{padding: "20px"}}>
     <Grid container direction={"column"} spacing={3} >
-      
-        
+
+
         <Grid item>
         <WeatherCard/>
         </Grid>
 
         <Grid item>
-          <div style={{paddingBottom:"40px", paddingTop:"40px"}}>
+          <div style={{paddingBottom:"30px", paddingTop:"30px"}}>
             <Typography color={"#091C43"} variant='h3' align='justify'><b>Hi There!</b></Typography>
           </div>
         </Grid>
@@ -33,9 +34,13 @@ const Homepage = () => {
         <Grid item>
           <ChatAgent/>
         </Grid>
-        
+
+        <Grid item>
+            <LevelIndicator/>
+        </Grid>
+
     </Grid>
-    
+
     </div>
 
   )

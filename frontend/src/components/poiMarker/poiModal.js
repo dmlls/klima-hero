@@ -4,6 +4,7 @@ import { Modal, Typography, Paper, IconButton, TextField, Button, Avatar } from 
 import CloseIcon from '@mui/icons-material/Close';
 import SendIcon from '@mui/icons-material/Send';
 import ThumbUpIcon from '@mui/icons-material/ThumbUp';
+import VerifiedIcon from '../../assets/verified.png';
 
 const CommentBubble = ({ comment }) => (
     <div style={{ display: 'flex', alignItems: 'center', gap: 10, marginBottom: 10 }}>
@@ -23,12 +24,18 @@ const PoiModal = ({ poiData, handleClose }) => {
                 <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', marginBottom: 20 }}>
                     <div style={{ display: 'flex', alignItems: 'center' }}>
                         <img src={poiData && poiData.iconUrl} alt="Poi Icon" style={{ marginRight: 15, width: 50, height: 50 }} />
-                        <div>
-                            <Typography variant="h5" style={{ marginBottom: 5 }}>
-                                {poiData && poiData.poiType}
-                            </Typography>
+                        <div style={{ display: 'flex', flexDirection: 'column' }}>
+                            <div style={{ display: 'flex', alignItems: 'center' }}>
+                                <Typography variant="h5" style={{ marginBottom: 5, marginRight: 5 }}>
+                                    {poiData && poiData.poiType}
+                                </Typography>
+
+                                {/* Display the custom PNG icon after the title */}
+                                <Avatar src={VerifiedIcon} alt="Custom Icon" style={{ width: 20, height: 20 }} />
+                            </div>
+
                             {poiData && poiData.creationDate && (
-                                <Typography variant="subtitle2" color="textSecondary">
+                                <Typography variant="subtitle2" color="textSecondary" style={{ marginLeft: 5 }}>
                                     Reported at: {new Date(poiData.creationDate).toLocaleString()}
                                 </Typography>
                             )}
@@ -45,7 +52,16 @@ const PoiModal = ({ poiData, handleClose }) => {
                 </div>
 
                 <div style={{ flex: 1, overflowY: 'auto' }}>
-                    {/* ... (existing code) */}
+                    <Typography variant="h6" gutterBottom>
+                        Comments
+                    </Typography>
+
+                    {/* Render CommentBubbles */}
+                    {poiData &&
+                        poiData.thread &&
+                        poiData.thread.map((comment, index) => (
+                            <CommentBubble key={index} comment={comment} />
+                        ))}
                 </div>
 
                 {/* Text Field and Send Message Button */}

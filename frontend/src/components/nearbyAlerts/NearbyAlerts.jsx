@@ -10,7 +10,7 @@ const NearbyAlerts = () => {
                 <Grid container spacing={2}>
                     {/* Left column with the title and list of bullet points */}
                     <Grid item xs={8}>
-                        <Typography color={"white"} variant='h4' align='left' style={{ marginBottom: '16px' }}>Near you..</Typography>
+                        <Typography color={"white"} variant='h4' align='left' style={{ marginBottom: '16px' }}>Near you...</Typography>
 
                         <Typography color={"white"} variant='subtitle1' align='left'>
                             5km&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Fallen tree
@@ -35,7 +35,7 @@ const NearbyAlerts = () => {
                                     }}
                                     aria-label="See on Map"
                                 >
-                                    <MapIcon style={{ fontSize: '45px', color: 'white' }} />
+                                    <MapIcon style={{ fontSize: '60px', color: 'white' }} />
                                 </IconButton>
                                 <Typography color={"white"} variant='subtitle2' align='center'>See on map</Typography>
                             </Link>
