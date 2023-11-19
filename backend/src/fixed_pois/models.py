@@ -5,6 +5,8 @@ from src.base_model import CamelModel
 
 class FixedPoiType(Enum):
 
+    HOME = "Home"
+    WORK = "Work"
     FOUNTAIN = "Fountain"
 
 

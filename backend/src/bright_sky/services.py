@@ -19,11 +19,14 @@ def warning_cells():
 
 
 def generate_alert():
-    start = datetime.datetime.now() + datetime.timedelta(days=randrange(start = -2, stop = 1),
-                                                         hours=randrange(start = -5, stop = 7),
-                                                         minutes=randrange(start = -5, stop = 7))
+    # start = datetime.datetime.now() + datetime.timedelta(days=randrange(start = -2, stop = 1),
+    #                                                      hours=randrange(start = -5, stop = 7),
+    #                                                      minutes=randrange(start = -5, stop = 7))
 
-    end  = datetime.datetime.now() + datetime.timedelta(days=randrange (start = 1, stop = 4),
+    start = datetime.datetime.now() + datetime.timedelta(hours=randrange(start = -7, stop = -1),
+                                                         minutes=randrange(start = -5, stop = 7))    
+
+    end  = datetime.datetime.now() + datetime.timedelta(days=randrange (start = 1, stop = 3),
                                              hours=randrange(start = -5, stop = 7),
                                              minutes=randrange(start = -5, stop = 7))
 
@@ -39,9 +42,9 @@ def generate_alert():
         'latitude': 48.00032741051456,
         'effective': start,
         'expires' : end,
-        'category': category,
-        'severity': severity,
-        'description': description,
+        'category': 'Storm',
+        'severity': 'Extreme',
+        'description': f"This is an official warning for an extreme storm (level 4 of 4) affecting the following areas starting on {start.strftime('%d/%m/%Y %H:%M:%S')} until {end.strftime('%d/%m/%Y %H:%M:%S')}!!",
         'id': "blabla",
         'iconUrl': "https://cdn.pixabay.com/photo/2018/03/27/20/07/storm-3267193_960_720.png"
     }

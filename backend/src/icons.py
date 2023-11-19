@@ -3,4 +3,6 @@ icons = {
     "Flood": "https://cdn-icons-png.flaticon.com/512/10438/10438541.png",
     "Fallen Tree": "https://cdn-icons-png.flaticon.com/512/10438/10438603.png",
     "Other": "https://cdn-icons-png.flaticon.com/512/10438/10438640.png",
+    "Home": "https://cdn-icons-png.flaticon.com/512/9073/9073243.png",
+    "Work": "https://cdn-icons-png.flaticon.com/512/3481/3481437.png"
 }
