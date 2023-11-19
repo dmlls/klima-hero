@@ -10,7 +10,7 @@ from src.fixed_pois.models import FixedPoiType
 class FixedPoi(Base):
     __tablename__ = "fixed_pois"
 
-    id = Column(Integer, primary_key=True, index=True)
+    id = Column(String, primary_key=True, index=True)
     latitude = Column(Float, index=True)
     longitude = Column(Float, index=True)
     poi_type = Column(String, CheckConstraint(
@@ -21,7 +21,7 @@ class FixedPoi(Base):
 class Poi(Base):
     __tablename__ = "pois"
 
-    id = Column(Integer, primary_key=True, index=True)
+    id = Column(String, primary_key=True, index=True)
     latitude = Column(Float, index=True)
     longitude = Column(Float, index=True)
     poi_type = Column(String, CheckConstraint(

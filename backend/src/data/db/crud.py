@@ -3,6 +3,7 @@ from typing import List, Union
 from sqlalchemy.orm import Session
 
 from . import models, schemas
+from src.utils import generate_id
 
 
 def create_pois(db: Session, pois: Union[schemas.PoiCreate, List[schemas.PoiCreate]]):
@@ -10,6 +11,7 @@ def create_pois(db: Session, pois: Union[schemas.PoiCreate, List[schemas.PoiCrea
         pois = [pois]
     for poi in pois:
         db_poi = models.Poi(
+            id=generate_id(),
             latitude=poi.latitude,
             longitude=poi.longitude,
             poi_type=poi.poi_type.value,
@@ -29,7 +31,6 @@ def create_pois(db: Session, pois: Union[schemas.PoiCreate, List[schemas.PoiCrea
 
 
 def update_poi(db: Session, id_: str, poi: schemas.PoiCreate) -> bool:
-    id_ = int(id_)
     matches = db.query(models.Poi).filter(models.Poi.id == id_).update(
         {
             "latitude": poi.latitude,
@@ -68,6 +69,7 @@ def create_fixed_pois(
         fixed_pois = [fixed_pois]
     for poi in fixed_pois:
         db_poi = models.FixedPoi(
+            id=generate_id(),
             latitude=poi.latitude,
             longitude=poi.longitude,
             poi_type=poi.poi_type.value,

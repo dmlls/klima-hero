@@ -3,7 +3,6 @@ from pathlib import Path
 from typing import Dict, List, Tuple
 
 from src.icons import icons
-from src.pois.models import PoiRequest
 
 current_dir =  Path(__file__).parent.resolve()
 

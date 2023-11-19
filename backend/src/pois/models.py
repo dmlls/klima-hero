@@ -53,11 +53,6 @@ class Poi(PoiRequest):
     id: str
     icon_url: str
 
-    @field_validator("id", mode="before")
-    @classmethod
-    def id2str(cls, v):
-        return str(v)
-
 
 class GetClosestPoisRequest(CamelModel):
     long: float
