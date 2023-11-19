@@ -37,7 +37,7 @@ const Navbar = () => {
             <div style={{ display: "flex", flexDirection: "column", height: "100vh"}}>
                 {/* Content Container */}
                 <div style={{ flex: 1, backgroundColor: "green"}}>
-                    <Card style={{height: "100%" }}>
+                    <Card style={{height: "100%", backgroundColor: "#DBE9F6" }}>
                         <Grid
                             container
                             direction="column"
@@ -56,18 +56,20 @@ const Navbar = () => {
                     </Card>
                 </div>
                 {/* Bottom Navbar */}
-                <BottomNavigation showLabels value={"Johannes"} style={{justifyContent:"space-between", paddingRight:"10px", paddingLeft:"10px"}}>
-                        <Link to="/" style={ {border: currPage==="home" ?  "solid 1px":""}}>
-                            <BottomNavigationAction  icon={<HomeIcon style={{fontSize:"35px"}} onClick={()=>setCurrPage("home")}
+                <BottomNavigation showLabels value={"Johannes"} style={{justifyContent:"space-evenly", padding:"10px", backgroundColor: "#c6d4e0", borderRadius: "0px 0px 0px 0px" }}>
+                        <Link to="/" style={{ textDecoration: 'none' }}>
+                            <BottomNavigationAction style={ {borderRadius: currPage==="home" ?  "10px": "", backgroundColor: currPage==="home" ?  "#9fa8b0": ""}}  icon={<HomeIcon style={{fontSize:"30px", color:"#272D2D"}} onClick={()=>setCurrPage("home")}
                              />}/>
                             <Typography variant="body2" color={"black"}>Home</Typography>
                         </Link>
-                        <Link to="/munichMap" style={ {border: currPage==="map" ?  "solid 1px":""}}>
-                            <BottomNavigationAction icon={<MapIcon style={{fontSize:"35px"}}  onClick={()=>setCurrPage("map")}/>}/>
+                        <Link to="/munichMap" style={{ textDecoration: 'none' }}>
+                            <BottomNavigationAction style={ {borderRadius: currPage==="map" ?  "10px": "", backgroundColor: currPage==="map" ?  "#9fa8b0": ""}}  icon={<MapIcon style={{fontSize:"30px", color:"#272D2D"}} onClick={()=>setCurrPage("map")}
+                            />}/>
                             <Typography variant="body2" color={"black"}>Map</Typography>
                         </Link>
-                        <Link to="/profile" style={ {border: currPage==="profile" ?  "solid 1px":""}}>
-                        <BottomNavigationAction icon={<AccountCircleIcon style={{fontSize:"35px"}}   onClick={()=>setCurrPage("profile")}/>} />
+                        <Link to="/profile" style={{ textDecoration: 'none' }}>
+                            <BottomNavigationAction style={ {borderRadius: currPage==="profile" ?  "10px": "", backgroundColor: currPage==="profile" ?  "#9fa8b0": ""}}  icon={<AccountCircleIcon style={{fontSize:"30px", color:"#272D2D"}} onClick={()=>setCurrPage("profile")}
+                            />}/>
                         <Typography variant="body2" color={"black"}>Profile</Typography>
                         </Link>
                 </BottomNavigation>

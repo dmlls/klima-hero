@@ -15,9 +15,9 @@ def get_warning_cells():
 def get_active_warning_cells():
     return warning_cells()
 
-@router.get("/alerts", response_model=Alert)
+@router.get("/alerts", response_model=List[Alert])
 def get_alerts():
-    return Alert(**generate_alert())
+    return [Alert(**generate_alert())]
 
 
 @router.get("/alerts/of", response_model=Alert)

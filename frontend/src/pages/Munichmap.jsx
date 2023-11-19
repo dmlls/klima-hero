@@ -34,6 +34,20 @@ class Cell {
   }
 }
 
+class Alert {
+  constructor(data) {
+    this.effective = data.effective || "2019-08-24T14:15:22Z";
+    this.expires = data.expires || "2019-08-24T14:15:22Z";
+    this.category = data.category || "string";
+    this.severity = data.severity || "string";
+    this.description = data.description || "string";
+    this.id = data.id || "string";
+    this.iconUrl = data.iconUrl || "string";
+    this.latitude = data.latitude;
+    this.longitude = data.longitude;
+  }
+}
+
 class Thread {
   constructor(threadItem) {
     this.author = threadItem.author;
@@ -50,6 +64,7 @@ const Munichmap = () => {
   const [zoom] = useState(10);
   const [API_KEY] = useState('N5ziFaB0ErlP8IQFCFOt');
   const [poiData, setPoiData] = useState(null);
+  const [alertData, setAlertData] = useState(null);
   const [cellsData, setCellsData] = useState(null);
   const [mapInitialized, setMapInitialized] = useState(false);
   const [openModal, setOpenModal] = useState(false);
@@ -80,6 +95,18 @@ const Munichmap = () => {
           }
       );
     });
+    if (!alertData) return;
+    alertData.forEach(alert => {
+      map.current.loadImage(
+          alert.iconUrl,
+          (error, image) => {
+            if (error) throw error;
+            if (!map.current.hasImage(alert.id)) {
+              map.current.addImage(alert.id, image);
+            }
+          }
+      );
+    });
   };
 
   const handleMapClick = (e) => {
@@ -95,7 +122,7 @@ const Munichmap = () => {
     ];
 
     // Check if the click was on a POI marker
-    const poiFeatures = map.current.queryRenderedFeatures(bbox, { layers: ['points'] });
+    const poiFeatures = map.current.queryRenderedFeatures(bbox, { layers: ['pois'] });
 
     if (poiFeatures.length > 0) {
       // Clicked on a POI marker
@@ -132,14 +159,42 @@ const Munichmap = () => {
         zoom: zoom,
         style: MapStyle.DATAVIZ.LIGHT
       });
-      map.current.on('load', () => {
+      map.current.on('load', async () => {
         setMapInitialized(true);
-        const mapContainerElement = map.current.getContainer();
-        const elementsToHide = mapContainerElement.querySelectorAll('.maplibregl-ctrl-bottom-left, .maplibregl-ctrl-bottom-right');
+        // Check if the source already exists before adding it
+        if (!map.current.getSource('blublu')) {
+          map.current.addSource('blublu', {
+            'type': 'geojson',
+            'data': {
+              'type': 'FeatureCollection',
+              'features': [
+                {
+                  'type': 'Feature',
+                  'properties': {
+                    'color': '#b100e8' // red
+                  },
+                  'geometry': {
+                    'type': 'LineString',
+                    'coordinates': [
+                      [11.56158251,48.1395966],[11.56521038,48.13950693],[11.56440419,48.13699626],[11.56615094,48.13323001],[11.56951009,48.13197453],[11.56951009,48.13197453],[11.57636274,48.12793887],[11.58093117,48.12462041],[11.5824092,48.12237809],[11.58133427,48.12013568],[11.58509651,48.11816227],[11.5914117,48.11663731],[11.59302409,48.11376668],[11.59329282,48.1116136],[11.59463648,48.11062674],[11.59718943,48.10309011],[11.61143219,48.10578189],[11.61438824,48.10596134],[11.61317895,48.10075712],[11.61734428,48.08469249],[11.62016596,48.07912704],[11.64367996,48.05470374],[11.65738527,48.02766298],[11.67001565,48.03215578],[11.68036181,48.03952313],[11.70266652,48.02191162],[11.70817551,48.02011419],[11.71247521,48.01912557],[11.71811857,48.01930532]
+                    ]
+                  }
+                }]
+            }
+          });
+          map.current.addLayer({
+            'id': 'lines',
+            'type': 'line',
+            'source': 'blublu',
+            'paint': {
+              'line-width': 3,
+              // Use a get expression (https://maplibre.org/maplibre-style-spec/expressions/#get)
+              // to set the line-color to a feature property value.
+              'line-color': ['get', 'color']
+            }
+          });
 
-        //elementsToHide.forEach(element => {
-        //  element.style.display = 'none';
-        //});
+        }
       });
     }
   }, [API_KEY, lng, lat, zoom, mapInitialized]);
@@ -204,7 +259,26 @@ const Munichmap = () => {
       };
       fetchData();
     }
-  }, [mapInitialized, poiData]);
+    if (mapInitialized && !alertData) {
+      const fetchData = async () => {
+        try {
+          const response = await fetch(`http://127.0.0.1:8000/api/v1/bright-sky/alerts`);
+
+          if (!response.ok) {
+            throw new Error('Network response was not ok');
+          }
+
+          const result = await response.json();
+          console.log(result)
+          const convertedData = result.map(item => new Alert(item));
+          setAlertData(convertedData);
+        } catch (error) {
+          console.error('Error fetching data:', error);
+        }
+      };
+      fetchData();
+    }
+  }, [mapInitialized, alertData]);
 
 
   useEffect(() => {
@@ -236,11 +310,11 @@ const Munichmap = () => {
   useEffect(() => {
     if (mapInitialized && poiData) {
       loadCustomImages();
-      map.current.getSource('points') && map.current.removeLayer('points');
-      map.current.getSource('points') && map.current.removeSource('points');
+      map.current.getSource('pois') && map.current.removeLayer('pois');
+      map.current.getSource('pois') && map.current.removeSource('pois');
 
       // Add a new marker layer for each point
-      map.current.addSource('points', {
+      map.current.addSource('pois', {
         type: 'geojson',
         data: {
           type: 'FeatureCollection',
@@ -258,9 +332,9 @@ const Munichmap = () => {
       });
 
       map.current.addLayer({
-        id: 'points',
+        id: 'pois',
         type: 'symbol',
-        source: 'points',
+        source: 'pois',
         layout: {
           'icon-image': ['get', 'icon-image'],
           'icon-size': 0.1,
@@ -270,6 +344,43 @@ const Munichmap = () => {
     }
   }, [poiData]);
 
+
+  useEffect(() => {
+    if (mapInitialized && alertData) {
+      loadCustomImages();
+      map.current.getSource('alerts') && map.current.removeLayer('alerts');
+      map.current.getSource('alerts') && map.current.removeSource('alerts');
+
+      // Add a new marker layer for each point
+      map.current.addSource('alerts', {
+        type: 'geojson',
+        data: {
+          type: 'FeatureCollection',
+          features: alertData.map((alert) => ({
+            type: 'Feature',
+            geometry: {
+              type: 'Point',
+              coordinates: [alert.longitude, alert.latitude],
+            },
+            properties: {
+              'icon-image': alert.id,
+            },
+          })),
+        },
+      });
+
+      map.current.addLayer({
+        id: 'alerts',
+        type: 'symbol',
+        source: 'alerts',
+        layout: {
+          'icon-image': ['get', 'icon-image'],
+          'icon-size': 0.1,
+          'icon-allow-overlap': true,
+        },
+      });
+    }
+  }, [alertData]);
 
   useEffect(() => {
     if (mapInitialized && cellsData) {
@@ -297,7 +408,7 @@ const Munichmap = () => {
         type: 'fill',
         source: 'polygons',
         paint: {
-          'fill-color': '#088',
+          'fill-color': '#d95e6c',
           'fill-opacity': 0.2,
         },
       });

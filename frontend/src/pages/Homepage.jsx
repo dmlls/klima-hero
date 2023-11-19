@@ -16,9 +16,9 @@ const Homepage = () => {
         </Grid>
 
         <Grid item>
-          <div style={{paddingBottom:"20px"}}>
-      <Typography color={"#204df6"} variant='h3' align='justify'><b>Hi There!</b></Typography>
-      </div>
+          <div style={{paddingBottom:"40px", paddingTop:"40px"}}>
+            <Typography color={"#091C43"} variant='h3' align='justify'><b>Hi There!</b></Typography>
+          </div>
         </Grid>
 
 

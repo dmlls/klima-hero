@@ -4,9 +4,9 @@ import Sun from '../../assets/sun.png'
 
 const WeatherCard = () => {
   return (
-    <Chip style={{backgroundColor: "#e7e0eb", justifyContent: "space-between", paddingRight:"10px", paddingLeft:"10px", minWidth:"100%", minHeight:"50px"}}
+    <Chip style={{backgroundColor: "white", justifyContent: "space-between", paddingRight:"10px", paddingLeft:"10px", minWidth:"100%", minHeight:"65px"}}
     avatar={<Avatar style={{height:"50px", width:"50px"}} src={Sun}></Avatar>}
-    label={<Typography variant="h6" textAlign={"right"}><b>25°C / 77°F </b> </Typography>}>
+    label={<Typography variant="h5" color="#5150B4" textAlign={"right"}><b>25°C / 77°F </b> </Typography>}>
             
             
         

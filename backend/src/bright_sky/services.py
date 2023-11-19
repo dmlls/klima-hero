@@ -35,11 +35,15 @@ def generate_alert():
     description = f"This is official warning for {severity} {category} (level {severity_level} of 4) starting on {start.strftime('%d/%m/%Y %H:%M:%S')} until {end.strftime('%d/%m/%Y %H:%M:%S')}!!"
 
     alert = {
+        'longitude': 11.5998732208879,
+        'latitude': 48.00032741051456,
         'effective': start,
         'expires' : end,
         'category': category,
         'severity': severity,
-        'description': description
+        'description': description,
+        'id': "blabla",
+        'iconUrl': "https://cdn.pixabay.com/photo/2018/03/27/20/07/storm-3267193_960_720.png"
     }
     return alert
 

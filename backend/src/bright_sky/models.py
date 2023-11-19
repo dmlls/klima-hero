@@ -20,3 +20,8 @@ class Alert(CamelModel):
     category: str
     severity: str
     description: str
+    id: str
+    icon_url: str
+    latitude: float
+    longitude: float
+

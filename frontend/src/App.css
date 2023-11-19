@@ -2,6 +2,7 @@
   text-align: center;
   width: 100%;
   height: 100vh;
+  background-color: #DBE9F6;
 }
 
 .App-logo {
@@ -26,7 +27,7 @@
 }
 
 .App-link {
-  color: #61dafb;
+  color: #DBE9F6;
 }
 
 @keyframes App-logo-spin {

@@ -1,31 +1,31 @@
-import { Avatar, Box, Card, Chip, Grid, Icon, Slider, Typography } from '@mui/material'
-import React from 'react'
+import React from 'react';
+import { Grid, Chip, Typography } from '@mui/material';
+import DirectionsBikeIcon from '@mui/icons-material/DirectionsBike';
 import HomeIcon from '@mui/icons-material/Home';
 import WorkIcon from '@mui/icons-material/Work';
-import { styled } from '@mui/material/styles';
-import DirectionsBikeIcon from '@mui/icons-material/DirectionsBike';
-import WayToWork from '../../assets/WayToWork.png';
-import Bike from '../../assets/bike.png';
+import ArrowBackIcon from '@mui/icons-material/ArrowBack';
+import ArrowForwardIcon from '@mui/icons-material/ArrowForward';
 
 const MainAlerts = () => {
+    return (
+        <Grid container justifyContent="space-between" alignItems="center">
+            <Chip
+                style={{ backgroundColor: "#5451D6", border: '4px solid #23CE6B', width: "55%", height: "50px" }}
+                label={
+                    <>
+                        <HomeIcon style={{ fontSize: 30, color: 'white', marginRight: 8 }} />
+                        <ArrowBackIcon style={{ fontSize: 30, color: 'white' }} />
+                        <ArrowForwardIcon style={{ fontSize: 30, color: 'white' }} />
+                        <WorkIcon style={{ fontSize: 30, color: 'white', marginLeft: 8 }} />
+                    </>
+                }
+            />
+            <Chip
+                style={{ backgroundColor: "#5451D6", border: '4px solid #23CE6B', width: "35%", height: "50px", paddingLeft: "4px" }}
+                label={<DirectionsBikeIcon style={{ fontSize: 28, color: 'white' }} />}
+            />
+        </Grid>
+    );
+};
 
-  
-
-  return (
-    <Grid container justifyContent={"space-between"}>
-
-            <Chip style={{backgroundColor: "#e7e0eb",border: '2px solid #66bb6a', width:"70%", height:"50px"}}
-            label={<img height="30px" src={WayToWork}></img>}>
-                
-            </Chip>
-            
-              <Chip style={{backgroundColor: "#e7e0eb",border: '2px solid #66bb6a', width:"20%", height:"50px",paddingRight:"4px"}} 
-              label={<img height="30px" src={Bike}></img>}>
-              
-              </Chip>
-
-    </Grid>
-  )
-}
-
-export default MainAlerts
+export default MainAlerts;
