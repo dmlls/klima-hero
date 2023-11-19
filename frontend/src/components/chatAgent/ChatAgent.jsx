@@ -1,34 +1,52 @@
-import React, { useEffect, useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { Avatar, Box, Typography, IconButton, CircularProgress } from '@mui/material';
 import EarthBot from '../../assets/earthBot2.png';
-import ChatIcon from '@mui/icons-material/Chat'; // Import the chat icon
+import ChatIcon from '@mui/icons-material/Chat';
 
 const ChatAgent = () => {
     const [agentText, setAgentText] = useState('');
     const [loading, setLoading] = useState(true);
 
+    /*useEffect(() => {
+       if (!agentText) {
+           const fetchData = async () => {
+               try {
+                   const response = await fetch(`http://127.0.0.1:8000/api/v1/agent/daily-update`);
+
+                   if (!response.ok) {
+                       throw new Error('Network response was not ok');
+                   }
+
+                   const result = await response.json();
+                   console.log(result);
+                   setAgentText(result["msg"]);
+               } catch (error) {
+                   console.error('Error fetching data:', error);
+               } finally {
+                   setLoading(false);
+               }
+           };
+           fetchData();
+       }
+   }, [agentText]);*/
+
     useEffect(() => {
-        if (!agentText) {
-            const fetchData = async () => {
-                try {
-                    const response = await fetch(`http://127.0.0.1:8000/api/v1/agent/daily-update`);
-
-                    if (!response.ok) {
-                        throw new Error('Network response was not ok');
-                    }
-
-                    const result = await response.json();
-                    console.log(result);
-                    setAgentText(result["msg"]);
-                } catch (error) {
-                    console.error('Error fetching data:', error);
-                } finally {
+        // Simulate API request delay
+        const fetchData = async () => {
+            try {
+                // Simulating API response after 2 seconds
+                setTimeout(() => {
+                    setAgentText("Today, the weather is 25°C, cloudy, and windy. There is an extreme storm warning in effect for your area starting from 19/11/2023 04:14:17 until 20/11/2023 13:12:17. Please stay safe and be prepared for the extreme conditions.");
                     setLoading(false);
-                }
-            };
-            fetchData();
-        }
-    }, [agentText]);
+                }, 2000);
+            } catch (error) {
+                console.error('Error fetching data:', error);
+                setLoading(false);
+            }
+        };
+
+        fetchData();
+    }, []);
 
     return (
         <Box
@@ -42,16 +60,10 @@ const ChatAgent = () => {
                 justifyContent: 'space-between',
                 alignItems: 'flex-start',
                 width: '91%',
+                maxWidth: '430px'
             }}
         >
-            <div
-                style={{
-                    flex: 1,
-                    paddingTop: '16px',
-                    maxHeight: '200px', // Set your preferred maximum height
-                    overflowY: 'auto', // Enable vertical scrollbar when content exceeds the maximum height
-                }}
-            >
+            <div style={{ flex: 1, paddingTop: '16px' }}>
                 {loading ? (
                     <CircularProgress style={{ color: 'white' }} />
                 ) : (
