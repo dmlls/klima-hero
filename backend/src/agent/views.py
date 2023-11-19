@@ -1,11 +1,10 @@
 import os
 import numpy as np
+from fastapi import APIRouter, status
 from .models import GetDailyUpdateResponse
 from openai import OpenAI
 from dotenv import load_dotenv
 from .services import get_chatgpt_info
-from fastapi import APIRouter, status, Depends, Response
-from fastapi.responses import StreamingResponse
 
 load_dotenv('src/.env')
 OPENAI_KEY = os.getenv("OPENAI_KEY")
@@ -18,13 +17,9 @@ Here is all the information that is relevant for the user on this day:
 {data_points}
 """
 
-NO_EVENT_MESSAGES = [
-    "Have a great day!",
-    "Nothing to worry about!",
-    "Everything is on track!",
-    "All is well! Enjoy your day!",
-    "There should be no issues today!",
-]
+NO_EVENT_MESSAGES = ["Have a great day!", "Nothing to worry about!", "Everything is on track!",
+    "All is well! Enjoy your day!", "There should be no issues today!", ]
+
 
 # current weather -> from peter
 # weather warnings -> from peter
@@ -36,17 +31,12 @@ def get_daily_update_view():
     data_points_as_string = get_chatgpt_info()
     # TODO: when do we say nothing to report?
     if data_points_as_string != "":
-        response = client.chat.completions.create(
-            model="gpt-3.5-turbo",
-            messages=[
-                {"role": "system", "content": request_template.format(data_points=data_points_as_string)},
-                {"role": "user", "content": "What is my daily update? Is there anything worth mentioning?"}
-            ],
-            stream=True
-        )
+        response = client.chat.completions.create(model="gpt-3.5-turbo",
+            messages=[{"role": "system", "content": request_template.format(data_points=data_points_as_string)},
+                {"role": "user", "content": "What is my daily update? Is there anything worth mentioning?"}],
+            stream=False)
 
-        # response = response.choices[0].message.content
+        response = response.choices[0].message.content
     else:
         response = NO_EVENT_MESSAGES[np.random.randint(0, len(NO_EVENT_MESSAGES))]
     return GetDailyUpdateResponse(msg=response)
-
