@@ -1,4 +1,4 @@
-<p align="center"><img width="400" src="https://github.com/dmlls/klima-hero/assets/22967053/b79acee8-d3d5-453e-bc61-f92539ec0421" alt="Klima Hero"></p>
+<p align="center"><img width="400" src="https://github.com/dmlls/klima-hero/assets/22967053/3b5ab0a0-7029-4fdb-900c-fdb145648aa5" alt="Klima Hero"></p>
 <h3 align="center">HackaTUM 2023</h3>
 <h4 align="center">Landeshauptstadt München Challenge</h4>
 <br>
