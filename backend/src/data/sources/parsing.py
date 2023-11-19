@@ -5,9 +5,10 @@ from typing import Dict, List, Tuple
 from src.icons import icons
 from src.pois.models import PoiRequest
 
+current_dir =  Path(__file__).parent.resolve()
+
 
 def parse_drinking_water() -> List[dict]:
-    current_dir =  Path(__file__).parent.resolve()
     with open(current_dir / "drinking_water.json", "r", encoding="utf-8") as f:
         parsed = json.load(f)
     return [
@@ -21,8 +22,12 @@ def parse_drinking_water() -> List[dict]:
 
 
 def parse_user_pois() -> List[dict]:
-    current_dir =  Path(__file__).parent.resolve()
     with open(current_dir / "user_pois.json", "r", encoding="utf-8") as f:
         parsed = json.load(f)
     return [{"icon_url": icons[element["poiType"]], **element} for element in parsed]
 
+
+def parse_fixed_pois() -> List[dict]:
+    with open(current_dir / "fixed_pois.json", "r", encoding="utf-8") as f:
+        parsed = json.load(f)
+    return [{"icon_url": icons[element["poiType"]], **element} for element in parsed]
