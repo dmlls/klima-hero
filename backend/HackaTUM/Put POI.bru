@@ -4,19 +4,23 @@ meta {
   seq: 2
 }
 
-post {
-  url: http://127.0.0.1:8000/api/v1/pois/create
+put {
+  url: http://127.0.0.1:8000/api/v1/pois
   body: json
   auth: none
 }
 
 body:json {
   {
-    "id": "string",
-    "latitude": 0,
-    "longitude": 0,
-    "poiType": "flood",
-    "thread": [],
+    "latitude": 48.2627204,
+    "longitude": 11.6685920,
+    "poiType": "Flood",
+    "thread": [
+      {
+        "author": "Diego Miguel",
+        "content": "Reporting some floods over here 🌊"
+      }
+    ],
     "upvotes": 0,
     "creationDate": "2023-11-18T11:43:54.033654",
     "relatedEvent": "",

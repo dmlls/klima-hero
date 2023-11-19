@@ -1,0 +1,566 @@
+{
+  "version": 0.6,
+  "generator": "Overpass API 0.7.61.5 4133829e",
+  "osm3s": {
+    "timestamp_osm_base": "2023-11-18T18:21:30Z",
+    "timestamp_areas_base": "2023-11-18T14:51:45Z",
+    "copyright": "The data included in this document is from www.openstreetmap.org. The data is made available under ODbL."
+  },
+  "elements": [
+    {
+      "type": "node",
+      "id": 267732695,
+      "lat": 48.1139242,
+      "lon": 11.5746348,
+      "tags": {
+        "amenity": "drinking_water",
+        "fountain": "drinking",
+        "wheelchair": "no"
+      }
+    },
+    {
+      "type": "node",
+      "id": 433435497,
+      "lat": 48.1565041,
+      "lon": 11.5315034,
+      "tags": {
+        "amenity": "drinking_water",
+        "check_date": "2022-08-23",
+        "fountain": "bottle_refill",
+        "wheelchair": "yes"
+      }
+    },
+    {
+      "type": "node",
+      "id": 433435539,
+      "lat": 48.1584012,
+      "lon": 11.5285043,
+      "tags": {
+        "amenity": "drinking_water",
+        "check_date": "2022-06-04",
+        "wheelchair": "yes"
+      }
+    },
+    {
+      "type": "node",
+      "id": 452068331,
+      "lat": 48.1571967,
+      "lon": 11.5741512,
+      "tags": {
+        "access": "yes",
+        "amenity": "drinking_water",
+        "fee": "no",
+        "fountain": "bubbler",
+        "name": "Bärenbrunnen",
+        "operator": "Stadt München",
+        "wheelchair": "yes",
+        "wheelchair:description": "Relativ hoch",
+        "wikidata": "Q41177622"
+      }
+    },
+    {
+      "type": "node",
+      "id": 456385235,
+      "lat": 48.1174508,
+      "lon": 11.5817574,
+      "tags": {
+        "access": "yes",
+        "amenity": "drinking_water",
+        "drinking_water": "unknown",
+        "fee": "no",
+        "fountain": "bubbler",
+        "wheelchair": "yes",
+        "wikimedia_commons": "File:Brunnen Obergiesing Edelweißplatz.JPG"
+      }
+    },
+    {
+      "type": "node",
+      "id": 471230911,
+      "lat": 48.0757364,
+      "lon": 11.5427322,
+      "tags": {
+        "access": "yes",
+        "amenity": "drinking_water",
+        "bottle": "yes",
+        "fee": "no",
+        "fountain": "drinking",
+        "name": "St.-Martin-Brunnen",
+        "operator": "Stadt München",
+        "wheelchair": "yes"
+      }
+    },
+    {
+      "type": "node",
+      "id": 516558607,
+      "lat": 48.1430881,
+      "lon": 11.5746036,
+      "tags": {
+        "amenity": "drinking_water",
+        "check_date": "2022-01-29",
+        "fountain": "bubbler",
+        "inscription": "Prinzregent Luitpold von Bayern 1821-1912",
+        "name": "Prinzregent-Luitpold-Brunnen",
+        "operator": "Stadtwerke München",
+        "source": "http://wiki.openstreetmap.org/wiki/User:PatrickK/Projekt:TrinkwasserbrunnenMünchen",
+        "wheelchair": "yes"
+      }
+    },
+    {
+      "type": "node",
+      "id": 518737912,
+      "lat": 48.1258515,
+      "lon": 11.5830348,
+      "tags": {
+        "amenity": "drinking_water",
+        "check_date": "2021-09-17",
+        "fountain": "bubbler",
+        "operator": "Stadtwerke München",
+        "source": "https://wiki.openstreetmap.org/wiki/User:PatrickK/Projekt:TrinkwasserbrunnenMünchen",
+        "wheelchair": "yes",
+        "wikimedia_commons": "File:Brunnen am Mariahilfplatz Muenchen.jpg"
+      }
+    },
+    {
+      "type": "node",
+      "id": 534627972,
+      "lat": 48.11775,
+      "lon": 11.6341181,
+      "tags": {
+        "amenity": "drinking_water",
+        "check_date": "2023-06-17",
+        "fountain": "bubbler"
+      }
+    },
+    {
+      "type": "node",
+      "id": 570088341,
+      "lat": 48.1168361,
+      "lon": 11.5880193,
+      "tags": {
+        "amenity": "drinking_water",
+        "check_date": "2021-10-24"
+      }
+    },
+    {
+      "type": "node",
+      "id": 618557998,
+      "lat": 48.1574886,
+      "lon": 11.415472,
+      "tags": {
+        "amenity": "drinking_water",
+        "check_date": "2021-08-10",
+        "operator": "Stadtwerke München",
+        "source": "http://wiki.openstreetmap.org/wiki/User:PatrickK/Projekt:TrinkwasserbrunnenMünchen",
+        "wheelchair": "limited"
+      }
+    },
+    {
+      "type": "node",
+      "id": 649255781,
+      "lat": 48.1310776,
+      "lon": 11.5961462,
+      "tags": {
+        "amenity": "drinking_water",
+        "artist_name": "Wilhelm Bertsch; Ernst Pfeifer",
+        "colour": "green",
+        "fountain": "bottle_refill",
+        "start_date": "1911",
+        "wheelchair": "yes",
+        "wikimedia_commons": "File:Bertsch-Brunnen.JPG"
+      }
+    },
+    {
+      "type": "node",
+      "id": 649255801,
+      "lat": 48.1140214,
+      "lon": 11.6148943,
+      "tags": {
+        "amenity": "drinking_water"
+      }
+    },
+    {
+      "type": "node",
+      "id": 655375303,
+      "lat": 48.1161593,
+      "lon": 11.5770957,
+      "tags": {
+        "amenity": "drinking_water"
+      }
+    },
+    {
+      "type": "node",
+      "id": 656248108,
+      "lat": 48.1191326,
+      "lon": 11.5839601,
+      "tags": {
+        "amenity": "drinking_water",
+        "check_date": "2021-10-24",
+        "fountain": "drinking",
+        "wikimedia_commons": "File:Trinkbrunnen am Ostfriedhof 1928 Muenchen-2.jpg"
+      }
+    },
+    {
+      "type": "node",
+      "id": 656248193,
+      "lat": 48.1214581,
+      "lon": 11.5815029,
+      "tags": {
+        "amenity": "drinking_water",
+        "check_date": "2021-09-17",
+        "drinking_water": "no",
+        "fountain": "bubbler",
+        "wikimedia_commons": "File:Nischenbrunnen am Nockherberg München.jpg"
+      }
+    },
+    {
+      "type": "node",
+      "id": 656248201,
+      "lat": 48.1214927,
+      "lon": 11.5801889,
+      "tags": {
+        "amenity": "drinking_water",
+        "check_date": "2023-08-27",
+        "fountain": "bubbler"
+      }
+    },
+    {
+      "type": "node",
+      "id": 666304998,
+      "lat": 48.1688582,
+      "lon": 11.5675061,
+      "tags": {
+        "amenity": "drinking_water",
+        "check_date": "2022-07-19",
+        "fountain": "bubbler"
+      }
+    },
+    {
+      "type": "node",
+      "id": 677225871,
+      "lat": 48.0920159,
+      "lon": 11.5481909,
+      "tags": {
+        "amenity": "drinking_water",
+        "fountain": "drinking",
+        "wikimedia_commons": "File:20180630 Zentralländstraße 35 München.jpg"
+      }
+    },
+    {
+      "type": "node",
+      "id": 692187620,
+      "lat": 48.1566906,
+      "lon": 11.5025674,
+      "tags": {
+        "amenity": "drinking_water",
+        "check_date": "2021-08-24",
+        "fountain": "drinking"
+      }
+    },
+    {
+      "type": "node",
+      "id": 692234637,
+      "lat": 48.1587953,
+      "lon": 11.5027858,
+      "tags": {
+        "amenity": "drinking_water",
+        "toilets:wheelchair": "no",
+        "wheelchair": "yes"
+      }
+    },
+    {
+      "type": "node",
+      "id": 726741579,
+      "lat": 48.1530607,
+      "lon": 11.6347883,
+      "tags": {
+        "amenity": "drinking_water",
+        "check_date": "2022-04-08"
+      }
+    },
+    {
+      "type": "node",
+      "id": 761774495,
+      "lat": 48.1679971,
+      "lon": 11.527864,
+      "tags": {
+        "amenity": "drinking_water",
+        "source": "survey"
+      }
+    },
+    {
+      "type": "node",
+      "id": 1383139825,
+      "lat": 48.1126312,
+      "lon": 11.5132174,
+      "tags": {
+        "amenity": "drinking_water",
+        "designation": "free drinking water",
+        "source": "sharefoodforest",
+        "wheelchair": "yes"
+      }
+    },
+    {
+      "type": "node",
+      "id": 2951318085,
+      "lat": 48.1291263,
+      "lon": 11.631607,
+      "tags": {
+        "amenity": "drinking_water",
+        "fee": "no",
+        "fountain": "bottle_refill",
+        "wheelchair": "limited"
+      }
+    },
+    {
+      "type": "node",
+      "id": 3059481054,
+      "lat": 48.1075537,
+      "lon": 11.5860562,
+      "tags": {
+        "amenity": "drinking_water",
+        "fountain": "drinking",
+        "opening_hours": "week 12-39 00:00-24:00",
+        "playground": "water"
+      }
+    },
+    {
+      "type": "node",
+      "id": 3077164480,
+      "lat": 48.2175894,
+      "lon": 11.6302113,
+      "tags": {
+        "amenity": "drinking_water"
+      }
+    },
+    {
+      "type": "node",
+      "id": 4347782530,
+      "lat": 48.1363492,
+      "lon": 11.5737122,
+      "tags": {
+        "access": "yes",
+        "amenity": "drinking_water",
+        "bottle": "yes",
+        "fee": "no",
+        "fountain": "drinking",
+        "wheelchair": "yes",
+        "wikimedia_commons": "File:Atlantida Brunnen Rindermarkt München.jpg"
+      }
+    },
+    {
+      "type": "node",
+      "id": 5184087159,
+      "lat": 48.1144642,
+      "lon": 11.5429377,
+      "tags": {
+        "amenity": "drinking_water"
+      }
+    },
+    {
+      "type": "node",
+      "id": 5585908527,
+      "lat": 48.1651421,
+      "lon": 11.4904065,
+      "tags": {
+        "amenity": "drinking_water",
+        "opening_hours": "Mo-Sa 08:00-20:00; Ph off"
+      }
+    },
+    {
+      "type": "node",
+      "id": 5696497293,
+      "lat": 48.1039925,
+      "lon": 11.5641742,
+      "tags": {
+        "amenity": "drinking_water",
+        "man_made": "water_tap"
+      }
+    },
+    {
+      "type": "node",
+      "id": 5777402981,
+      "lat": 48.153531,
+      "lon": 11.5708265,
+      "tags": {
+        "amenity": "drinking_water",
+        "drinking_water": "yes",
+        "drinking_water:legal": "yes",
+        "fountain": "drinking",
+        "man_made": "water_tap",
+        "operator": "SWM GmbH"
+      }
+    },
+    {
+      "type": "node",
+      "id": 5810943318,
+      "lat": 48.1041904,
+      "lon": 11.5643922,
+      "tags": {
+        "amenity": "drinking_water",
+        "man_made": "water_tap"
+      }
+    },
+    {
+      "type": "node",
+      "id": 5810944291,
+      "lat": 48.1038573,
+      "lon": 11.5639999,
+      "tags": {
+        "amenity": "drinking_water",
+        "man_made": "water_tap"
+      }
+    },
+    {
+      "type": "node",
+      "id": 6561330347,
+      "lat": 48.0932692,
+      "lon": 11.5511619,
+      "tags": {
+        "amenity": "drinking_water",
+        "fountain": "drinking"
+      }
+    },
+    {
+      "type": "node",
+      "id": 6851817185,
+      "lat": 48.1354432,
+      "lon": 11.570766,
+      "tags": {
+        "access": "yes",
+        "amenity": "drinking_water",
+        "bottle": "yes",
+        "covered": "no",
+        "description": "Holzabdeckung im Winter",
+        "fee": "no",
+        "indoor": "no",
+        "lit": "yes",
+        "seasonal": "spring;summer;autumn",
+        "wheelchair": "yes"
+      }
+    },
+    {
+      "type": "node",
+      "id": 6853181756,
+      "lat": 48.1637842,
+      "lon": 11.501417,
+      "tags": {
+        "access": "customers",
+        "amenity": "drinking_water"
+      }
+    },
+    {
+      "type": "node",
+      "id": 8737119765,
+      "lat": 48.128495,
+      "lon": 11.6031565,
+      "tags": {
+        "amenity": "drinking_water",
+        "man_made": "water_tap",
+        "wikimedia_commons": "File:Frischwasserbrunnen 2022 Orleanplatz München.jpg"
+      }
+    },
+    {
+      "type": "node",
+      "id": 8923546405,
+      "lat": 48.1342276,
+      "lon": 11.5734468,
+      "tags": {
+        "access": "yes",
+        "amenity": "drinking_water",
+        "bottle": "yes",
+        "fee": "no"
+      }
+    },
+    {
+      "type": "node",
+      "id": 9833118562,
+      "lat": 48.178497,
+      "lon": 11.5542268,
+      "tags": {
+        "amenity": "drinking_water"
+      }
+    },
+    {
+      "type": "node",
+      "id": 9987143556,
+      "lat": 48.1677264,
+      "lon": 11.5023501,
+      "tags": {
+        "access": "customers",
+        "amenity": "drinking_water",
+        "fountain": "bubbler",
+        "location": "outdoor"
+      }
+    },
+    {
+      "type": "node",
+      "id": 9988702748,
+      "lat": 48.1678254,
+      "lon": 11.5018225,
+      "tags": {
+        "amenity": "drinking_water",
+        "man_made": "water_tap"
+      }
+    },
+    {
+      "type": "node",
+      "id": 11040114910,
+      "lat": 48.1775846,
+      "lon": 11.5818469,
+      "tags": {
+        "amenity": "drinking_water",
+        "fountain": "bubbler"
+      }
+    },
+    {
+      "type": "node",
+      "id": 11040114911,
+      "lat": 48.1775864,
+      "lon": 11.5819798,
+      "tags": {
+        "amenity": "drinking_water",
+        "fountain": "bubbler"
+      }
+    },
+    {
+      "type": "node",
+      "id": 11040114912,
+      "lat": 48.1775408,
+      "lon": 11.5819188,
+      "tags": {
+        "amenity": "drinking_water",
+        "fountain": "bubbler"
+      }
+    },
+    {
+      "type": "node",
+      "id": 11040114913,
+      "lat": 48.1774946,
+      "lon": 11.5819201,
+      "tags": {
+        "amenity": "drinking_water",
+        "fountain": "bubbler"
+      }
+    },
+    {
+      "type": "node",
+      "id": 11040114914,
+      "lat": 48.1774911,
+      "lon": 11.5818526,
+      "tags": {
+        "amenity": "drinking_water",
+        "fountain": "bubbler"
+      }
+    },
+    {
+      "type": "node",
+      "id": 11040114915,
+      "lat": 48.1775384,
+      "lon": 11.5818517,
+      "tags": {
+        "amenity": "drinking_water",
+        "fountain": "bubbler"
+      }
+    }
+  ]
+}

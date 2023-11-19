@@ -6,6 +6,10 @@ name = "pypi"
 [packages]
 fastapi = "*"
 uvicorn = "*"
+sqlalchemy = "*"
+geopy = "*"
+numpy = "*"
+pydantic = "*"
 
 [dev-packages]
 

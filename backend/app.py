@@ -4,9 +4,16 @@ import logging
 from fastapi import FastAPI
 from fastapi.middleware.cors import CORSMiddleware
 from src.api import api_router_root, api_router_v1
-
+from src.data.db import models, database
+from src.utils import populate_db
 
 logger = logging.getLogger(__name__)
+
+### Comment out if DB is not to be cleaned on startup. #########################
+for tbl in reversed(models.Base.metadata.sorted_tables):
+    tbl.drop(database.engine, checkfirst=True)
+models.Base.metadata.create_all(bind=database.engine)
+populate_db()
 
 app = FastAPI()
 api_root = FastAPI(title="Probably Something Awesome")
@@ -21,7 +28,7 @@ api_v1 = FastAPI(
 
 # CORS
 origins = [
-    "http://localhost",
+    "*",
 ]
 
 # Include middleware

@@ -1,0 +1,45 @@
+[
+    {
+        "latitude": 48.2627204,
+        "longitude": 11.6685920,
+        "poiType": "Flood",
+        "thread": [
+          {
+            "author": "Johaness Getzner",
+            "content": "The whole street is covered by the water."
+          },
+          {
+            "author": "Peter Fam",
+            "content": "Can confirm!"
+          }
+        ],
+        "upvotes": 9,
+        "official": false
+    },
+    {
+        "latitude": 48.1611227,
+        "longitude": 11.5897455,
+        "poiType": "Fallen Tree",
+        "thread": [
+          {
+            "author": "Landeshauptstadt München",
+            "content": "A tree has fallen on the pavement. The emergency services are already on it."
+          }
+        ],
+        "upvotes": 23,
+        "official": true
+    },
+    {
+        "latitude": 48.18004,
+        "longitude": 11.55290,
+        "poiType": "Other",
+        "thread": [
+          {
+            "author": "Mariz Awad",
+            "content": "A bottle fell from the garbage bin because of the wind and now all the glass is scattered on the ground. Be careful!"
+          }
+        ],
+        "upvotes": 5,
+        "official": false
+    }
+]
