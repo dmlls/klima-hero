@@ -11,7 +11,7 @@ OPENAI_KEY = os.getenv("OPENAI_KEY")
 
 router = APIRouter()
 request_template = """
-As an AI assistant tailored for an application aiding individuals during extreme weather conditions like heatwaves, heavy rain, floods, or storms, your role is to provide a daily summary based on the information provied below. Each day, if there is anything worth mentioning, the user will be greeted by you. Your task is to present a clear and succinct summary to inform the user about the current situation. Use bullet points if adequate. Only utilize the provided information. Do not incorporate external information or fabricate details. Keep your response very short!
+As an AI assistant tailored for an application aiding individuals during extreme weather conditions like heatwaves, heavy rain, floods, or storms, your role is to provide a daily summary based on the information provied below. Each day, if there is anything worth mentioning, the user will be greeted by you. Your task is to present a clear and succinct summary to inform the user about the current situation. Only utilize the provided information. Do not incorporate external information or fabricate details. Keep your response very short!
 
 Here is all the information that is relevant for the user on this day:
 {data_points}
