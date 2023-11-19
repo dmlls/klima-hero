@@ -12,6 +12,7 @@ class FixedPoiType(Enum):
 
 class FixedPoiRequest(CamelModel):
 
+    id: str
     latitude: float
     longitude: float
     poi_type: FixedPoiType
@@ -22,10 +23,4 @@ class FixedPoiRequest(CamelModel):
 
 class FixedPoi(FixedPoiRequest):
 
-    id: str
     icon_url: str
-
-    @field_validator("id", mode="before")
-    @classmethod
-    def id2str(cls, v):
-        return str(v)

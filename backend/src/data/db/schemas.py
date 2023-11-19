@@ -1,12 +1,12 @@
-from src.pois.models import PoiRequest
-from src.fixed_pois.models import FixedPoiRequest
+from src.pois.models import Poi
+from src.fixed_pois.models import FixedPoi
 
 
-class PoiCreate(PoiRequest):
+class PoiCreate(Poi):
 
-    icon_url: str
+    pass
 
 
-class FixedPoiCreate(FixedPoiRequest):
+class FixedPoiCreate(FixedPoi):
 
-    icon_url: str
+    pass
