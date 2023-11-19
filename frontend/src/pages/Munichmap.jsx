@@ -274,6 +274,8 @@ const Munichmap = () => {
           }
 
           const result = await response.json();
+          console.log("poidata")
+          console.log(result)
           const convertedData = result.map(item => new Poi(item));
           setPoiData(convertedData);
         } catch (error) {
@@ -282,6 +284,14 @@ const Munichmap = () => {
       };
       fetchData();
     }
+
+
+  }, [mapInitialized, poiData]);
+
+
+
+
+  useEffect(() => {
     if (mapInitialized && !fixedPoiData) {
       const fetchData = async () => {
         try {
@@ -292,6 +302,7 @@ const Munichmap = () => {
           }
 
           const result = await response.json();
+          console.log("fixedPoiData")
           console.log(result)
           const convertedData = result.map(item => new FixedPoi(item));
           setFixedPoiData(convertedData);
@@ -301,7 +312,12 @@ const Munichmap = () => {
       };
       fetchData();
     }
+  }, [mapInitialized, fixedPoiData]);
+
+
+  useEffect(() => {
     if (mapInitialized && !alertData) {
+      console.log("heyy")
       const fetchData = async () => {
         try {
           const response = await fetch(`http://127.0.0.1:8000/api/v1/bright-sky/alerts`);
@@ -311,6 +327,8 @@ const Munichmap = () => {
           }
 
           const result = await response.json();
+          console.log("alertData")
+          console.log(result)
           const convertedData = result.map(item => new Alert(item));
           setAlertData(convertedData);
         } catch (error) {
@@ -324,7 +342,7 @@ const Munichmap = () => {
 
   useEffect(() => {
     // Fetch data after the map is initialized
-    if (true) {
+    if (mapInitialized && !cellsData) {
       const fetchData = async () => {
         try {
           const response = await fetch(`http://127.0.0.1:8000/api/v1/bright-sky/warning-cells/active`);
@@ -332,8 +350,9 @@ const Munichmap = () => {
           if (!response.ok) {
             throw new Error('Network response was not ok');
           }
-
           const result = await response.json();
+          console.log("cellsData")
+          console.log(result)
           const convertedData = result.map(item => new Cell(item));
 
           setCellsData(convertedData);
@@ -343,7 +362,7 @@ const Munichmap = () => {
       };
       fetchData();
     }
-  }, [mapInitialized, poiData]);
+  }, [mapInitialized, cellsData]);
 
 
 

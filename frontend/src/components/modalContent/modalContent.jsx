@@ -2,12 +2,12 @@ import React, { useState } from 'react';
 import { Box, Button, Grid, Modal, Typography, TextField} from '@mui/material';
 import CloseIcon from '@mui/icons-material/Close';
 import Icon1 from '../../assets/flood.png';
-import Icon2 from '../../assets/flood.png';
-import Icon3 from '../../assets/flood.png';
+import Icon2 from '../../assets/thunder.png';
+import Icon3 from '../../assets/warning.png';
 
 const ModalContent = ({ handleClose }) => {
     const icons = [Icon1, Icon2, Icon3];
-    const titles = ['Title 1', 'Title 2', 'Title 3'];
+    const titles = ['Flood', 'Fallen Tree', 'Other'];
 
     const [selectedBox, setSelectedBox] = useState(null);
     const [textInput, setTextInput] = useState('');
@@ -43,7 +43,7 @@ const ModalContent = ({ handleClose }) => {
             }}
         >
             <Typography variant="h5" sx={{ marginBottom: 2 }}>
-                Choose an Option
+                Whats going on?
             </Typography>
 
             <Grid container spacing={2}>
@@ -80,7 +80,7 @@ const ModalContent = ({ handleClose }) => {
             </Grid>
 
             <TextField
-                label="Enter text"
+                label="Describe whats happening"
                 variant="outlined"
                 fullWidth
                 margin="normal"
